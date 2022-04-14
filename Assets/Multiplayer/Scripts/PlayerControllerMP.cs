@@ -26,6 +26,8 @@ public class PlayerControllerMP : NetworkBehaviour {
         playerName = id.ToString();
 
         Debug.Log("Player " + playerName + " created!");
+
+        PlayerManager.Instance.RegisterPlayer(this, IsOwner);
     }
 
     void Update() {

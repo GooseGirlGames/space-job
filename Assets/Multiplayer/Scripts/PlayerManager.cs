@@ -10,6 +10,9 @@ public class PlayerManager : NetworkBehaviour {
     private NetworkVariable<int> playerCount =
             new NetworkVariable<int>();
 
+    private List<PlayerControllerMP> players;
+    private PlayerControllerMP localPlayer;
+
     public int PlayersInGame {
         get {
             return playerCount.Value;
@@ -23,6 +26,8 @@ public class PlayerManager : NetworkBehaviour {
             Destroy(this);
         }
         DontDestroyOnLoad(this);
+
+        players = new List<PlayerControllerMP>();
     }
 
     void Start() {
@@ -44,5 +49,18 @@ public class PlayerManager : NetworkBehaviour {
 
     void Update() {
 
+    }
+
+    public void RegisterPlayer(PlayerControllerMP player, bool isLocal) {
+        players.Add(player);
+        if (isLocal) {
+            localPlayer = player;
+        }
+    }
+
+    public PlayerControllerMP LocalPlayer {
+        get {
+            return localPlayer;
+        }
     }
 }
