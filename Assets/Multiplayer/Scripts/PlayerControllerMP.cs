@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
 
+[System.Serializable]
+public struct PlayerPos {
+    public Vector3 Position;
+    public Quaternion Rotation;
+}
+
 [RequireComponent(typeof(NetworkObject))]
 public class PlayerControllerMP : NetworkBehaviour {
 
@@ -10,6 +16,9 @@ public class PlayerControllerMP : NetworkBehaviour {
     private float movementSpeed = 5f;
     private System.Guid id;
     private string playerName = "";
+
+    private NetworkVariable<PlayerPos> playerPos
+            = new NetworkVariable<PlayerPos>();
 
     void Start() {
         controller = GetComponent<CharacterController>();
@@ -21,16 +30,31 @@ public class PlayerControllerMP : NetworkBehaviour {
 
     void Update() {
         if (IsClient) {
-            ClientUpdate();
+            if (IsOwner) {
+                ProcessInput();
+            } else {
+                UpdatePos();
+            }
         }
     }
 
-    void ClientUpdate() {
+    void ProcessInput() {
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
         var direction = new Vector3(horizontalInput, 0, verticalInput);
 
         controller.Move(direction * Time.deltaTime * movementSpeed);
+
+        var p = new PlayerPos();
+        p.Position = controller.transform.position;
+        p.Rotation = controller.transform.rotation;
+
+        playerPos.Value = p;
+    }
+
+    void UpdatePos() {
+        transform.position = playerPos.Value.Position;
+        transform.rotation = playerPos.Value.Rotation;
     }
 }
