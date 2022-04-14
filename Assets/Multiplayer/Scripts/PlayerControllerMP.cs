@@ -50,11 +50,17 @@ public class PlayerControllerMP : NetworkBehaviour {
         p.Position = controller.transform.position;
         p.Rotation = controller.transform.rotation;
 
-        playerPos.Value = p;
+        //playerPos.Value = p;
+        UpdatePosServerRpc(p);
     }
 
     void UpdatePos() {
         transform.position = playerPos.Value.Position;
         transform.rotation = playerPos.Value.Rotation;
+    }
+
+    [ServerRpc]
+    public void UpdatePosServerRpc(PlayerPos p) {
+        playerPos.Value = p;
     }
 }
