@@ -46,6 +46,10 @@ public class PlayerControllerMP : NetworkBehaviour {
 
         var direction = new Vector3(horizontalInput, 0, verticalInput);
 
+        var cameraDirection = Camera.main.transform.rotation;
+        direction = cameraDirection * direction;
+        direction.y = 0;  // no flying allowed!
+
         controller.Move(direction * Time.deltaTime * movementSpeed);
 
         var p = new PlayerPos();
