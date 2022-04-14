@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
+using Unity.Collections;
 
 [System.Serializable]
 public struct PlayerPos {
@@ -14,18 +15,22 @@ public class PlayerControllerMP : NetworkBehaviour {
 
     private CharacterController controller;
     private float movementSpeed = 5f;
-    private System.Guid id;
-    private string playerName = "";
+
+    private NetworkVariable<FixedString32Bytes> playerName
+            = new NetworkVariable<FixedString32Bytes>();
 
     private NetworkVariable<PlayerPos> playerPos
             = new NetworkVariable<PlayerPos>();
 
     void Start() {
         controller = GetComponent<CharacterController>();
-        id = System.Guid.NewGuid();
-        playerName = id.ToString();
 
-        Debug.Log("Player " + playerName + " created!");
+        if (IsOwner) {
+            var name = SystemInfo.deviceName + Random.RandomRange(1000, 9999);
+            HelloServerRpc(name);
+        }
+
+        Debug.Log("Player " + playerName.Value + " created!");
 
         PlayerManager.Instance.RegisterPlayer(this, IsOwner);
     }
@@ -68,5 +73,10 @@ public class PlayerControllerMP : NetworkBehaviour {
     [ServerRpc]
     public void UpdatePosServerRpc(PlayerPos p) {
         playerPos.Value = p;
+    }
+
+    [ServerRpc]
+    public void HelloServerRpc(string name) {
+        playerName.Value = name;
     }
 }
