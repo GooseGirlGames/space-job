@@ -1,6 +1,3 @@
 [submodule "Packages/com.unity.netcode.gameobjects"]
 	path = Packages/com.unity.netcode.gameobjects
 	url = https://github.com/Unity-Technologies/com.unity.netcode.gameobjects
-[submodule "Packages/PSX-Graphics"]
-	path = Packages/PSX-Graphics
-	url = git@github.com:finnmito/PSX-Graphics.git
