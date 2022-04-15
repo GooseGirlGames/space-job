@@ -54,6 +54,8 @@ public class PlayerManager : NetworkBehaviour {
     public void RegisterPlayer(PlayerControllerMP player, bool isLocal) {
         players.Add(player);
         if (isLocal) {
+            player.gameObject.transform.position = transform.position;
+            player.gameObject.transform.rotation = transform.rotation;
             localPlayer = player;
         }
     }
