@@ -9,3 +9,7 @@ which is included here as a git submodule.  After cloning this repo, run the fol
 git submodule init
 git submodule update
 ```
+
+## PSX-style shader
+
+Based on https://github.com/Kodrin/URP-PSX, released under the MIT License.
