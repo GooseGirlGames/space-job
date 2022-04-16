@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class FollowCamera : MonoBehaviour {
-    PlayerControllerMP player;
+    PlayerAvatar player;
 
     // Update is called once per frame
     void Update() {
-        var player = PlayerManager.Instance.LocalPlayer;
+        var player = PlayerManager.Instance.LocalPlayer.Avatar;
 
         if (player) {
             transform.LookAt(player.transform.position);

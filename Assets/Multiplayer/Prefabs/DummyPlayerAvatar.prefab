@@ -151,7 +151,7 @@ GameObject:
   - component: {fileID: 7404256255760437957}
   - component: {fileID: 672393372111137661}
   m_Layer: 0
-  m_Name: DummyCharacterMP
+  m_Name: DummyPlayerAvatar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

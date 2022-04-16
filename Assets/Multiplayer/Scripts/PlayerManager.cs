@@ -8,14 +8,29 @@ public class PlayerManager : NetworkBehaviour {
     public static PlayerManager Instance;
 
     private NetworkVariable<int> playerCount =
-            new NetworkVariable<int>();
+            new NetworkVariable<int>(1);
 
-    private List<PlayerControllerMP> players;
-    private PlayerControllerMP localPlayer;
-
-    public int PlayersInGame {
+    private List<PersistentPlayer> players;
+    public List<PersistentPlayer> Players {
         get {
-            return playerCount.Value;
+            return players;
+        }
+    }
+
+    private PersistentPlayer localPlayer;
+    public PersistentPlayer LocalPlayer {
+        get {
+            return localPlayer;
+        }
+    }
+
+    public string LobbyInfo {
+        get {
+            string info = playerCount.Value + "/4: ";
+            foreach (var player in players) {
+                info = info + " " + player.PlayerName;
+            }
+            return info;
         }
     }
 
@@ -27,7 +42,7 @@ public class PlayerManager : NetworkBehaviour {
         }
         DontDestroyOnLoad(this);
 
-        players = new List<PlayerControllerMP>();
+        players = new List<PersistentPlayer>();
     }
 
     void Start() {
@@ -51,7 +66,7 @@ public class PlayerManager : NetworkBehaviour {
 
     }
 
-    public void RegisterPlayer(PlayerControllerMP player, bool isLocal) {
+    public void RegisterPlayer(PersistentPlayer player, bool isLocal) {
         players.Add(player);
         if (isLocal) {
             player.gameObject.transform.position = transform.position;
@@ -60,9 +75,4 @@ public class PlayerManager : NetworkBehaviour {
         }
     }
 
-    public PlayerControllerMP LocalPlayer {
-        get {
-            return localPlayer;
-        }
-    }
 }

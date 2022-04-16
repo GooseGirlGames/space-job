@@ -12,13 +12,14 @@ public struct PlayerPos {
 }
 
 [RequireComponent(typeof(NetworkObject))]
-public class PlayerControllerMP : NetworkBehaviour {
+public class PlayerAvatar : NetworkBehaviour {
 
     private CharacterController controller;
     private float movementSpeed = 5f;
+    public string playerName;
 
-    private NetworkVariable<FixedString32Bytes> playerName
-            = new NetworkVariable<FixedString32Bytes>();
+    //private NetworkVariable<FixedString32Bytes> playerName
+    //        = new NetworkVariable<FixedString32Bytes>();
 
     private NetworkVariable<PlayerPos> playerPos
             = new NetworkVariable<PlayerPos>();
@@ -28,14 +29,14 @@ public class PlayerControllerMP : NetworkBehaviour {
     void Start() {
         controller = GetComponent<CharacterController>();
 
-        if (IsOwner) {
+        /*
+         * if (IsOwner) {
             var name = SystemInfo.deviceName + Random.RandomRange(1000, 9999);
             HelloServerRpc(name);
         }
+        */
 
-        Debug.Log("Player " + playerName.Value + " created!");
-
-        PlayerManager.Instance.RegisterPlayer(this, IsOwner);
+        //Debug.Log("Player avatar " + playerName.Value + " created!");
     }
 
     void Update() {
@@ -50,7 +51,7 @@ public class PlayerControllerMP : NetworkBehaviour {
     }
 
     void UpdateNameTag() {
-        nameText.text = playerName.Value.ToString();  // TODO only update when needed?
+        nameText.text = playerName;  // TODO only update when needed?
 
         nameText.gameObject.transform.LookAt(Camera.main.transform.position);
         nameText.gameObject.transform.Rotate(Vector3.up, 180f);  // mirror
@@ -86,8 +87,4 @@ public class PlayerControllerMP : NetworkBehaviour {
         playerPos.Value = p;
     }
 
-    [ServerRpc]
-    public void HelloServerRpc(string name) {
-        playerName.Value = name;
-    }
 }
