@@ -14,10 +14,10 @@ public class PersistentPlayer : NetworkBehaviour {
             return playerName.Value.ToString();
         }
         set {
+            Debug.Log("Name changed");
             if (IsOwner) {
                 SetNameServerRpc(value);
             }
-            // TODO notify server
         }
     }
 
@@ -33,7 +33,6 @@ public class PersistentPlayer : NetworkBehaviour {
 
     void Start() {
         PlayerManager.Instance.RegisterPlayer(this, IsOwner);
-        PlayerName = SystemInfo.deviceName;
     }
 
     public void SpawnAvatar() {
@@ -48,6 +47,7 @@ public class PersistentPlayer : NetworkBehaviour {
 
     [ServerRpc]
     public void SetNameServerRpc(string name) {
+        Debug.Log("SetNameServerRpc " + name);
         playerName.Value = name;
     }
 }

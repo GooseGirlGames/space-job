@@ -33,8 +33,8 @@ public class MainMenu : MonoBehaviour {
     }
 
     public void PlayerNameChanged() {
-        string name = playerName.name;
-        PlayerManager.Instance.LocalPlayer.PlayerName = name;
+        string name = playerName.text;
+        PlayerManager.Instance.LocalPlayerName = name;
     }
 
     public void ServerAddressChanged() {
