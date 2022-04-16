@@ -36,8 +36,11 @@ public class PersistentPlayer : NetworkBehaviour {
     }
 
     public void SpawnAvatar() {
+        var owner = OwnerClientId;
+
         avatar = GameObject.Instantiate(avatarPrefab).GetComponent<PlayerAvatar>();
-        avatar.playerName = PlayerName;
+        avatar.GetComponent<NetworkObject>().Spawn();
+        avatar.GetComponent<NetworkObject>().ChangeOwnership(owner);
     }
 
     // Update is called once per frame
