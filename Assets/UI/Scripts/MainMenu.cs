@@ -12,7 +12,8 @@ public class MainMenu : MonoBehaviour {
 
     private NetworkManager networkManager;
     private UnityTransport transport;
-    private bool connected;
+    private bool connected = false;
+    private bool host = false;
 
     [SerializeField]
     private TMP_InputField playerName;
@@ -45,6 +46,7 @@ public class MainMenu : MonoBehaviour {
 
     public void StartHost() {
         connected = connected || NetworkManager.Singleton.StartHost();
+        host = true;
     }
 
     public void StartClient() {
@@ -54,6 +56,10 @@ public class MainMenu : MonoBehaviour {
     public void StartGame() {
         if (!connected) {
             Debug.LogWarning("Cannot start game unless connected!");
+            return;
+        }
+        if (!host) {
+            Debug.LogWarning("Cannot start game as non-host!");
             return;
         }
         foreach (PersistentPlayer player in PlayerManager.Instance.Players) {

@@ -30,7 +30,7 @@ public class PlayerManager : NetworkBehaviour {
         get {
             string info = playerCount.Value + "/4: ";
             foreach (var player in players) {
-                info = info + " " + player.PlayerName;
+                info = info + ", " + player.PlayerName;
             }
             return info;
         }
