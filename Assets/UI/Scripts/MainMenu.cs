@@ -4,6 +4,7 @@ using UnityEngine;
 using Unity.Netcode;
 using Unity.Netcode.Transports.UTP;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 /*
  * TODO separate out the connection stuff
@@ -65,6 +66,8 @@ public class MainMenu : MonoBehaviour {
         foreach (PersistentPlayer player in PlayerManager.Instance.Players) {
             player.SpawnAvatar();
         }
+
+        NetworkManager.Singleton.SceneManager.LoadScene("SampleScene", LoadSceneMode.Single);
     }
 
     void OnGUI() {
