@@ -48,7 +48,6 @@ public class PlayerManager : NetworkBehaviour {
         NetworkManager.Singleton.OnClientConnectedCallback +=
             (id) => {
                 if (IsServer) {
-                    Debug.Log("New player " + id);
                     _playerCount.Value++;
                 }
             };
@@ -57,6 +56,9 @@ public class PlayerManager : NetworkBehaviour {
             (id) => {
                 if (IsServer) {
                     _playerCount.Value--;
+                    PersistentPlayer player =
+                            NetworkManager.Singleton.ConnectedClients[id].PlayerObject.GetComponent<PersistentPlayer>();
+                    Debug.Log("Disconnect: " + player.PlayerName);
                 }
             };
     }
