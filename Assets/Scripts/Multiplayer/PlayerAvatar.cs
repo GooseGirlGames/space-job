@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 using Unity.Netcode;
 using TMPro;
@@ -21,6 +22,8 @@ public class PlayerAvatar : NetworkBehaviour {
             = new NetworkVariable<NetworkObjectReference>(default, default, NetworkVariableWritePermission.Owner);
 
     private List<int> m_MovementLocks = new List<int>();
+
+    private Coroutine m_SpeedBoostCoroutine = null;
 
     public enum Slot {
         PRIMARY, SECONDARY
@@ -164,6 +167,18 @@ public class PlayerAvatar : NetworkBehaviour {
             // ShowInInventory **should** be called automatically, because the networkvariable changed
         }
 
+        if (Input.GetKeyDown(KeyCode.Mouse1)) {
+            if (!HasInventorySpace(Slot.PRIMARY)) {
+                var item = GetInventoryItem(Slot.PRIMARY).GetComponentInChildren<InteractableBase>();
+                if (item != null) {
+                    int animation = item.SelfInteraction(this);
+                    if (animation != -1) {
+                        m_ActiveAnimation.Value = animation;
+                    }
+                }
+            }
+        }
+
         UpdatePosServerRpc(p);
     }
     void UpdatePos() {
@@ -290,5 +305,20 @@ public class PlayerAvatar : NetworkBehaviour {
     }
     public bool MovementLocked {
         get => m_MovementLocks.Count > 0;
+    }
+
+    public void SpeedBoost() {
+        if (m_SpeedBoostCoroutine == null) {
+            m_SpeedBoostCoroutine = StartCoroutine(SpeedBoostCoroutine());
+        }
+    }
+    IEnumerator SpeedBoostCoroutine() {
+        float speed_prev = m_MovementSpeed;
+        m_MovementSpeed *= 3f;
+        m_PlayerAnimator.speed = 3f;
+        yield return new WaitForSeconds(4);
+        m_MovementSpeed = speed_prev;
+        m_PlayerAnimator.speed = 1f;
+        m_SpeedBoostCoroutine = null;
     }
 }

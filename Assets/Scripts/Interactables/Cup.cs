@@ -10,7 +10,7 @@ using Unity.Netcode.Components;
   Feckn delicious shit, oh no..
   */
 
-public class Cup : Interactable<int>{
+public class Cup : Interactable<int> {
     private MeshRenderer m_Mesh;
     private Rigidbody m_Rigidbody;
     private List<Collider> m_AllCollider;
@@ -49,6 +49,11 @@ public class Cup : Interactable<int>{
         localPlayer.AddToInventory(GetComponentInParent<NetworkObject>());
 
         SetServerRpc((int) NetworkManager.Singleton.LocalClientId); // weardes casting thing
+    }
+
+    public override int SelfInteraction(PlayerAvatar avatar) {
+        avatar.SpeedBoost();
+        return 6;
     }
 
     public override void OnStateChange(int previous, int current){

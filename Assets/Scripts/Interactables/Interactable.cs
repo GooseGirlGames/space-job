@@ -1,7 +1,7 @@
 using UnityEngine;
 using Unity.Netcode;
 
-public abstract class Interactable<T> : NetworkBehaviour where T : unmanaged {
+public abstract class Interactable<T> : InteractableBase where T : unmanaged {
 
     private LayerMask m_HighlightedLayer;
     private LayerMask m_DefaultLayer;
@@ -84,6 +84,7 @@ public abstract class Interactable<T> : NetworkBehaviour where T : unmanaged {
     }
 
     protected abstract void Interaction();
+
     public T Value{
         get => m_State.Value;
     }
