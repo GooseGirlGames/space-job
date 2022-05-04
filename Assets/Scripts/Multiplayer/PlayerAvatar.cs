@@ -250,7 +250,7 @@ public class PlayerAvatar : NetworkBehaviour {
         }
     }
 
-    private NetworkObject GetInventoryItem(Slot slot) {
+    public NetworkObject GetInventoryItem(Slot slot) {
         NetworkObjectReference reference;
         if (slot == Slot.PRIMARY) {
             reference = m_PrimaryItem.Value;

@@ -56,8 +56,25 @@ public class PlayerManager : NetworkBehaviour {
             (id) => {
                 if (IsServer) {
                     _playerCount.Value--;
-                    PersistentPlayer player =
-                            NetworkManager.Singleton.ConnectedClients[id].PlayerObject.GetComponent<PersistentPlayer>();
+                    NetworkObject po = NetworkManager.Singleton.ConnectedClients[id].PlayerObject;
+                    PersistentPlayer player = po.GetComponent<PersistentPlayer>();
+                    PlayerAvatar avatar = player.Avatar;
+
+                    // disown
+                    po.ChangeOwnership(OwnerClientId);
+                    avatar.GetComponent<NetworkObject>().ChangeOwnership(OwnerClientId);
+
+                    if (!avatar.HasInventorySpace(PlayerAvatar.Slot.PRIMARY)) {
+                        avatar.DropItem(PlayerAvatar.Slot.PRIMARY);
+                    }
+                    if (!avatar.HasInventorySpace(PlayerAvatar.Slot.SECONDARY)) {
+                        avatar.DropItem(PlayerAvatar.Slot.SECONDARY);
+                    }
+
+                    // destroy
+                    po.ChangeOwnership(id);
+                    avatar.GetComponent<NetworkObject>().ChangeOwnership(id);
+
                     Debug.Log("Disconnect: " + player.PlayerName);
                 }
             };
