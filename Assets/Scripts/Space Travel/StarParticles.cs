@@ -1,7 +1,5 @@
 using UnityEngine;
 using Cinemachine;
-using Unity.Netcode;
-using Unity.Netcode.Samples;
 
 
 public class StarParticles : MonoBehaviour
@@ -45,8 +43,10 @@ public class StarParticles : MonoBehaviour
         for(int i = 0; i < maxStars; i++){
             //current particle position around camera (sphere) * distace (inside sphere) * transofrm ( keeps particle around camera)
             stars[i].position = Random.insideUnitSphere * starDistance + cam.transform.position;
+#pragma warning disable CS0618
             stars[i].color = new Color(1,1,1,1);
             stars[i].size = starSize;
+#pragma warning restore CS0618
         }
     }
     void Update() {
@@ -116,8 +116,10 @@ public class StarParticles : MonoBehaviour
             }
             if((stars[i].position - cam.transform.position).sqrMagnitude <= clippingDistSqr){
                 float visability = (stars[i].position - cam.transform.forward +  cam.transform.position).sqrMagnitude / clippingDistSqr; //clipping distance 100%
+#pragma warning disable CS0618
                 stars[i].color = new Color(1,1,1,visability);
                 stars[i].size = starSize * visability;
+#pragma warning restore CS0618
             } 
             
             
