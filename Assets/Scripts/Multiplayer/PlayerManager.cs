@@ -44,11 +44,26 @@ public class PlayerManager : NetworkBehaviour {
         m_Players = new List<PersistentPlayer>();
     }
 
+    // Set to true after the ship scene is loaded
+    private bool m_InGame = false;
+    public bool InGame {
+        get => m_InGame;
+    }
+
     void Start() {
         NetworkManager.Singleton.OnClientConnectedCallback +=
             (id) => {
                 if (IsServer) {
                     m_PlayerCount.Value++;
+
+                    NetworkObject po = NetworkManager.Singleton.ConnectedClients[id].PlayerObject;
+                    PersistentPlayer player = po.GetComponent<PersistentPlayer>();
+
+                    if (m_InGame) {  // player joined in-progress game
+                        player.SpawnAvatar(PlayerSpawnLocation.GetSpawn());  // TODO spawn as dead in medbay
+                    }
+
+                    Debug.Log("Connect: " + player.PlayerName);
                 }
             };
 
@@ -86,6 +101,7 @@ public class PlayerManager : NetworkBehaviour {
 
     public void RegisterPlayer(PersistentPlayer player, bool isLocal) {
         m_Players.Add(player);
+        Debug.Log("Registered Player '" + player.PlayerName + "'");
         if (isLocal) {
             player.gameObject.transform.position = transform.position;
             player.gameObject.transform.rotation = transform.rotation;
@@ -94,11 +110,13 @@ public class PlayerManager : NetworkBehaviour {
         }
     }
 
-    public static void SpawnAvatars(
+    public void StartShip(
             string sceneName,
             LoadSceneMode loadSceneMode,
             List<ulong> clientsCompleted,
             List<ulong> clientsTimedOut) {
+
+        m_InGame = true;
         SpawnAvatars();
     }
 

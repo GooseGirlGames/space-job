@@ -9,15 +9,16 @@ public class PersistentPlayer : NetworkBehaviour {
     public OnAvatarChangedDelegate OnAvatarChanged;
 
     private NetworkVariable<FixedString32Bytes> m_PlayerName
-            = new NetworkVariable<FixedString32Bytes>();
+            = new NetworkVariable<FixedString32Bytes>(default, default, NetworkVariableWritePermission.Owner);
     public string PlayerName {
         get {
             return m_PlayerName.Value.ToString();
         }
         set {
-            Debug.Log("Name changed");
             if (IsOwner) {
-                SetNameServerRpc(value);
+                m_PlayerName.Value = value;
+            } else {
+                Debug.LogWarning("Cannot set name unless owner");
             }
         }
     }
@@ -55,25 +56,15 @@ public class PersistentPlayer : NetworkBehaviour {
         m_Avatar.OnValueChanged -= AvatarChanged;
     }
 
+    // Note: Only called by Server, as they are the only one allowed to spawn objects
     public void SpawnAvatar(Transform spawnLocation) {
         var owner = OwnerClientId;
 
         PlayerAvatar avatar = GameObject.Instantiate(m_AvatarPrefab, spawnLocation.position, spawnLocation.rotation).GetComponent<PlayerAvatar>();
         NetworkObject avatarNetworkObject = avatar.GetComponent<NetworkObject>();
-        avatarNetworkObject.Spawn();
-        avatarNetworkObject.ChangeOwnership(owner);
+        avatarNetworkObject.SpawnWithOwnership(owner);
+        //avatar.OnAvatarSpawnedClientRpc();
 
-        m_Avatar.Value = avatarNetworkObject;
-    }
-
-    // Update is called once per frame
-    void Update() {
-        
-    }
-
-    [ServerRpc]
-    public void SetNameServerRpc(string name) {
-        Debug.Log("SetNameServerRpc " + name);
-        m_PlayerName.Value = name;
+        // m_Avatar.Value = avatarNetworkObject;
     }
 }

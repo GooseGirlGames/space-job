@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
 
@@ -5,25 +6,34 @@ public class CameraSwap : MonoBehaviour {
     public CinemachineVirtualCamera m_Camera;
     public bool InRoom;
 
-    void Start() {
+    private static List<CameraSwap> m_Instances = new List<CameraSwap>();
+
+    void Awake() {
         if(m_Camera == null){
             m_Camera = GetComponent<CinemachineVirtualCamera>();
         }
         if(m_Camera == null){
             m_Camera = GetComponentInChildren<CinemachineVirtualCamera>();
         }
+
+        // I *think* this is not needed anymore because UpdateLookAt is
+        // called whenever an avatar spawns -- not sure tho :)
         if(!InRoom) {
-            PlayerAvatar avatar = PlayerManager.Instance.LocalPlayer.Avatar;
-            if (avatar != null) {
-                LookAtPlayer(avatar);
-            } else {
-                PlayerManager.Instance.LocalPlayer.OnAvatarChanged += LookAtPlayer;
+            if (PlayerManager.Instance.LocalPlayer != null) {
+                PlayerAvatar avatar = PlayerManager.Instance.LocalPlayer.Avatar;
+                if (avatar != null) {
+                    LookAtPlayer(avatar);
+                } else {
+                    PlayerManager.Instance.LocalPlayer.OnAvatarChanged += LookAtPlayer;
+                }
             }
         }
 
         if (!m_Camera) {
             Debug.LogWarning("No camera found for CameraSwap " + name);
         }
+
+        m_Instances.Add(this);
     }
 
     public void LookAtPlayer(PlayerAvatar avatar) {
@@ -36,5 +46,11 @@ public class CameraSwap : MonoBehaviour {
 
     public void SwitchAway() {
         m_Camera.Priority = InRoom ? 5 : 10;
+    }
+
+    public static void UpdateLookAt(PlayerAvatar avatar) {
+        foreach (var camera in m_Instances) {
+            camera.LookAtPlayer(avatar);
+        }
     }
 }

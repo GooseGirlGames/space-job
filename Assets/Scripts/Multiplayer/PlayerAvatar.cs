@@ -54,14 +54,6 @@ public class PlayerAvatar : NetworkBehaviour {
     public void Start() {
         m_Controller = GetComponent<CharacterController>();
         m_PlayerAnimator = GetComponent<Animator>();
-
-        foreach (var player in FindObjectsOfType<PersistentPlayer>()) {
-            if (player.OwnerClientId == OwnerClientId) {
-                m_LocalPlayer = player;
-                break;
-            }
-        }
-        name = nameText.text = m_LocalPlayer.PlayerName;
     }
 
     void Update() {
@@ -113,6 +105,32 @@ public class PlayerAvatar : NetworkBehaviour {
         m_PrimaryItem.OnValueChanged += OnPrimaryItemChanged;
         m_SecondaryItem.OnValueChanged += OnSecondaryItemChanged;
         m_ActiveAnimation.OnValueChanged += OnAnimationChange;
+        Debug.Log("[PlayerAvatar/OnNetworkSpawn] PlayerAvatar spanwed " + name + " owned by " + OwnerClientId);
+        Setup();
+    }
+
+    public void Setup() {
+        // Setup for all players
+        foreach (var player in FindObjectsOfType<PersistentPlayer>()) {
+            if (player.OwnerClientId == OwnerClientId) {
+                m_LocalPlayer = player;
+                break;
+            }
+        }
+        if (m_LocalPlayer == null) {
+            Debug.LogWarning("Player object not found for '" + name + "'");
+            return;
+        }
+
+        name = m_LocalPlayer.PlayerName;
+        nameText.text = m_LocalPlayer.PlayerName;
+
+        Debug.Log("Found persistentplayer object " + m_LocalPlayer.name + " for avatar " + name + " Owner? " + IsOwner);
+
+        // Setup for local player
+        if (IsOwner) {
+            CameraSwap.UpdateLookAt(this);
+        }
     }
 
     void OnGUI() {
