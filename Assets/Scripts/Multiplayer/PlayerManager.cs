@@ -9,24 +9,24 @@ public class PlayerManager : NetworkBehaviour {
 
     public string LocalPlayerName = "";
 
-    private NetworkVariable<int> _playerCount =
+    private NetworkVariable<int> m_PlayerCount =
             new NetworkVariable<int>(1);
 
-    private List<PersistentPlayer> _players;
+    private List<PersistentPlayer> m_Players;
     public List<PersistentPlayer> Players {
-        get => _players;
+        get => m_Players;
     }
 
-    private PersistentPlayer _localPlayer;
+    private PersistentPlayer m_LocalPlayer;
     public PersistentPlayer LocalPlayer {
-        get => _localPlayer;
+        get => m_LocalPlayer;
     }
 
     public string LobbyInfo {
         get {
-            string info = _playerCount.Value + "/4: ";
+            string info = m_PlayerCount.Value + "/4: ";
             int n = 0;
-            foreach (var player in _players) {
+            foreach (var player in m_Players) {
                 info = info + ((n++ == 0) ? "" : ", ") + player.PlayerName;
             }
             return info;
@@ -41,21 +41,21 @@ public class PlayerManager : NetworkBehaviour {
         }
         DontDestroyOnLoad(this);
 
-        _players = new List<PersistentPlayer>();
+        m_Players = new List<PersistentPlayer>();
     }
 
     void Start() {
         NetworkManager.Singleton.OnClientConnectedCallback +=
             (id) => {
                 if (IsServer) {
-                    _playerCount.Value++;
+                    m_PlayerCount.Value++;
                 }
             };
 
         NetworkManager.Singleton.OnClientDisconnectCallback +=
             (id) => {
                 if (IsServer) {
-                    _playerCount.Value--;
+                    m_PlayerCount.Value--;
                     NetworkObject po = NetworkManager.Singleton.ConnectedClients[id].PlayerObject;
                     PersistentPlayer player = po.GetComponent<PersistentPlayer>();
                     PlayerAvatar avatar = player.Avatar;
@@ -85,12 +85,12 @@ public class PlayerManager : NetworkBehaviour {
     }
 
     public void RegisterPlayer(PersistentPlayer player, bool isLocal) {
-        _players.Add(player);
+        m_Players.Add(player);
         if (isLocal) {
             player.gameObject.transform.position = transform.position;
             player.gameObject.transform.rotation = transform.rotation;
-            _localPlayer = player;
-            _localPlayer.PlayerName = LocalPlayerName;
+            m_LocalPlayer = player;
+            m_LocalPlayer.PlayerName = LocalPlayerName;
         }
     }
 
