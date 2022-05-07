@@ -10,7 +10,7 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour {
 
     private NetworkManager networkManager;
-    private UnityTransport transport;
+    private UnityTransport m_Transport;
     private bool connected = false;
     private bool host = false;
 
@@ -23,7 +23,7 @@ public class MainMenu : MonoBehaviour {
 
     void Start() {
         networkManager = NetworkManager.Singleton;
-        transport = networkManager.GetComponentInParent<UnityTransport>();
+        m_Transport = networkManager.GetComponentInParent<UnityTransport>();
 
         serverAddress.text = MultiplayerUtil.GetLocalIPAddress();
         ServerAddressChanged();
@@ -37,9 +37,6 @@ public class MainMenu : MonoBehaviour {
         }
     }
 
-    void Update() {
-    }
-
     public void PlayerNameChanged() {
         string name = playerName.text;
         PlayerManager.Instance.LocalPlayerName = name;
@@ -47,8 +44,8 @@ public class MainMenu : MonoBehaviour {
 
     public void ServerAddressChanged() {
         string ip = serverAddress.text;
-        transport.ConnectionData.Address = ip;
-        transport.ConnectionData.ServerListenAddress = ip;
+        m_Transport.ConnectionData.Address = ip;
+        m_Transport.ConnectionData.ServerListenAddress = ip;
     }
 
     public bool IsArgon() {
@@ -61,7 +58,11 @@ public class MainMenu : MonoBehaviour {
             return;
         }
         connected = connected || NetworkManager.Singleton.StartHost();
-        host = true;
+        if (connected) {
+            host = true;
+        } else {
+            m_Transport.Shutdown();
+        }
     }
 
     public void StartClient() {
@@ -71,6 +72,10 @@ public class MainMenu : MonoBehaviour {
         }
 
         connected = connected || NetworkManager.Singleton.StartClient();
+
+        if (!connected) {
+            m_Transport.Shutdown();
+        }
     }
 
     public void StartGame() {
