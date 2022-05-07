@@ -20,9 +20,11 @@ public class ShipManager : NetworkBehaviour {
     }
 
     void Start() {
+        /*
         foreach(char error_code in ERROR_CODES) {
             Debug.Log(ErrorCodeDisplay(error_code) + " / " + PowerSolutionCode(error_code));
         }
+        */
     }
 
     public Terminal PowerTerminal;
