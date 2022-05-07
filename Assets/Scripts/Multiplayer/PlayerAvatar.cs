@@ -131,6 +131,11 @@ public class PlayerAvatar : NetworkBehaviour {
         if (IsOwner) {
             CameraSwap.UpdateLookAt(this);
         }
+
+        // more setup
+        OnPrimaryItemChanged(m_PrimaryItem.Value, m_PrimaryItem.Value);
+        OnSecondaryItemChanged(m_SecondaryItem.Value, m_SecondaryItem.Value);
+        OnAnimationChange(m_ActiveAnimation.Value, m_ActiveAnimation.Value);
     }
 
     void OnGUI() {
