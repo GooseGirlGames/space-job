@@ -40,9 +40,17 @@ public class PersistentPlayer : NetworkBehaviour {
 
     void Start() {
         PlayerManager.Instance.RegisterPlayer(this, IsOwner);
+
+        // jah, a bit hacky but seems to do the trick?
+        m_PlayerName.OnValueChanged += (FixedString32Bytes _, FixedString32Bytes __) => {
+            if (Avatar != null) {
+                Avatar.Setup();
+            }
+        };
     }
 
     public void AvatarChanged(NetworkObjectReference previous, NetworkObjectReference current) {
+        Debug.Log("Avatar changed for " + PlayerName);
         if (OnAvatarChanged != null) {
             OnAvatarChanged(Avatar);
         }
@@ -65,6 +73,6 @@ public class PersistentPlayer : NetworkBehaviour {
         avatarNetworkObject.SpawnWithOwnership(owner);
         //avatar.OnAvatarSpawnedClientRpc();
 
-        // m_Avatar.Value = avatarNetworkObject;
+        m_Avatar.Value = avatarNetworkObject;
     }
 }

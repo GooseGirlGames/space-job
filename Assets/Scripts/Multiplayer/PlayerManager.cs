@@ -60,7 +60,9 @@ public class PlayerManager : NetworkBehaviour {
                     PersistentPlayer player = po.GetComponent<PersistentPlayer>();
 
                     if (m_InGame) {  // player joined in-progress game
+                        Debug.Log("Persistenplayer spawned? " + player.IsSpawned);
                         player.SpawnAvatar(PlayerSpawnLocation.GetSpawn());  // TODO spawn as dead in medbay
+                        Debug.Log("Persistenplayer spawned? " + player.IsSpawned);
                     }
 
                     Debug.Log("Connect: " + player.PlayerName);
