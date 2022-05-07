@@ -19,6 +19,11 @@ public class Door : NetworkBehaviour {
         }
     }
 
+    [ServerRpc(RequireOwnership = false)]
+    public void SetRoomStatusServerRpc(){
+        m_Open.Value = !m_Open.Value;
+    }
+
     public override void OnNetworkSpawn(){
         m_Open.OnValueChanged += OnDoorStateChange;
     }
@@ -29,7 +34,6 @@ public class Door : NetworkBehaviour {
     public void OnDoorStateChange(bool previous, bool current){
         m_PsychologicalDoor.enabled = current;
         m_PhysicalDoor.enabled = current;
-
     }
 
     // Start is called before the first frame update
