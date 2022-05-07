@@ -6409,6 +6409,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2564884901006971323, guid: 44ca72322a78ed02dab928618fd08566, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 2642077610
+      objectReference: {fileID: 0}
     - target: {fileID: 7835289414256684431, guid: 44ca72322a78ed02dab928618fd08566, type: 3}
       propertyPath: m_Layer
       value: 2
@@ -8700,16 +8704,24 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2455571940339219289, guid: 0f42f4d45f4a653a2bd998e39b7a8d35, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 2455571940339219289, guid: 0f42f4d45f4a653a2bd998e39b7a8d35, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2455571940339219289, guid: 0f42f4d45f4a653a2bd998e39b7a8d35, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.097
       objectReference: {fileID: 0}
     - target: {fileID: 2455571940339219289, guid: 0f42f4d45f4a653a2bd998e39b7a8d35, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.08301354
+      value: 0.136
       objectReference: {fileID: 0}
     - target: {fileID: 2455571940339219289, guid: 0f42f4d45f4a653a2bd998e39b7a8d35, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.059
+      value: -0.015
       objectReference: {fileID: 0}
     - target: {fileID: 2455571940339219289, guid: 0f42f4d45f4a653a2bd998e39b7a8d35, type: 3}
       propertyPath: m_LocalRotation.w
@@ -9010,7 +9022,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -4673841838035738812, guid: 6a45d708ab572ca109168fe3970b24d5, type: 3}
       propertyPath: GlobalObjectIdHash
-      value: 3309345678
+      value: 2784718386
       objectReference: {fileID: 0}
     - target: {fileID: 4912015480305189325, guid: 6a45d708ab572ca109168fe3970b24d5, type: 3}
       propertyPath: PowerTerminal
