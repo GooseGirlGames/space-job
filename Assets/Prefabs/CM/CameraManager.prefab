@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7835289414256684428}
   - component: {fileID: 7835289414256684429}
   - component: {fileID: 7835289414256684426}
+  - component: {fileID: 10880544271398496}
   m_Layer: 0
   m_Name: red
   m_TagString: Untagged
@@ -58,7 +59,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 214c44ce72d5fd67cb9ee35df798cde1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Camera: {fileID: 0}
   InRoom: 0
+--- !u!114 &10880544271398496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7835289414256684431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a6aff4f342516f5d8e8690c049bc7c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Red
+  Doors: []
 --- !u!1 &7835289414517563829
 GameObject:
   m_ObjectHideFlags: 0
@@ -171,6 +187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 214c44ce72d5fd67cb9ee35df798cde1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Camera: {fileID: 0}
   InRoom: 0
 --- !u!1 &7835289414624380572
 GameObject:
@@ -250,6 +267,8 @@ GameObject:
   - component: {fileID: 7835289414690357479}
   - component: {fileID: 7835289414690357476}
   - component: {fileID: 7835289414690357477}
+  - component: {fileID: 2251535634696412082}
+  - component: {fileID: 2564884901006971323}
   m_Layer: 0
   m_Name: blue
   m_TagString: Untagged
@@ -297,7 +316,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 214c44ce72d5fd67cb9ee35df798cde1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Camera: {fileID: 0}
   InRoom: 0
+--- !u!114 &2251535634696412082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7835289414690357478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a6aff4f342516f5d8e8690c049bc7c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Blue
+  Doors: []
+--- !u!114 &2564884901006971323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7835289414690357478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 951099334
+  AlwaysReplicateAsRoot: 0
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
 --- !u!1 &7835289415317342906
 GameObject:
   m_ObjectHideFlags: 0

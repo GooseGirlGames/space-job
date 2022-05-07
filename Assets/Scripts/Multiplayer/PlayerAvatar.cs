@@ -21,6 +21,15 @@ public class PlayerAvatar : NetworkBehaviour {
     private NetworkVariable<NetworkObjectReference> m_SecondaryItem
             = new NetworkVariable<NetworkObjectReference>(default, default, NetworkVariableWritePermission.Owner);
 
+    private Room m_CurrentRoom = null;
+    public Room CurrentRoom {
+        get => m_CurrentRoom;
+        set {
+            Debug.Log(name + " entered " + value.Name);
+            m_CurrentRoom = value;
+        }
+    }
+
     private List<int> m_MovementLocks = new List<int>();
 
     private Coroutine m_SpeedBoostCoroutine = null;

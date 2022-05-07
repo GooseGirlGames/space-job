@@ -1,8 +1,11 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
 
 public class ShipManager : NetworkBehaviour {
+    public List<Room> Rooms = new List<Room>();
+
     public const char HAS_POWER = '\0';
 
     private NetworkVariable<float> m_Oxygen = new NetworkVariable<float>(1f);
