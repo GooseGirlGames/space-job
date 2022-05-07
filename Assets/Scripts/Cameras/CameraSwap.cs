@@ -50,7 +50,9 @@ public class CameraSwap : MonoBehaviour {
 
     public static void UpdateLookAt(PlayerAvatar avatar) {
         foreach (var camera in m_Instances) {
-            camera.LookAtPlayer(avatar);
+            if (!camera.InRoom) {
+                camera.LookAtPlayer(avatar);
+            }
         }
     }
 }
