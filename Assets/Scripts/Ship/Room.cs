@@ -13,6 +13,7 @@ public class Room : NetworkBehaviour {
     }
 
     void Awake() {
+        ShipManager.Instance.Rooms.Add(this);
         foreach (Door door in Doors) {
             door.SetRoom(this);
         }

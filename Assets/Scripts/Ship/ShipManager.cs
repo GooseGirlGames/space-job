@@ -86,5 +86,10 @@ public class ShipManager : NetworkBehaviour {
                 ResolvePowerOutageEvent();
             }
         }
+        if (Input.GetKeyDown(KeyCode.O)) {
+            foreach (Room room in Rooms) {
+                Debug.Log(room.Name + ": " + room.Oxygen);
+            }
+        }
     }
 }
