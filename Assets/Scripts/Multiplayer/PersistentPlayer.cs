@@ -57,6 +57,7 @@ public class PersistentPlayer : NetworkBehaviour {
     }
 
     public override void OnNetworkSpawn() {
+        Debug.Log("hewwo");
         m_Avatar.OnValueChanged += AvatarChanged;
     }
 
@@ -66,6 +67,8 @@ public class PersistentPlayer : NetworkBehaviour {
 
     // Note: Only called by Server, as they are the only one allowed to spawn objects
     public void SpawnAvatar(Transform spawnLocation) {
+        Debug.Log("Spawning an avatar!");
+
         var owner = OwnerClientId;
 
         PlayerAvatar avatar = GameObject.Instantiate(m_AvatarPrefab, spawnLocation.position, spawnLocation.rotation).GetComponent<PlayerAvatar>();
@@ -74,5 +77,6 @@ public class PersistentPlayer : NetworkBehaviour {
         //avatar.OnAvatarSpawnedClientRpc();
 
         m_Avatar.Value = avatarNetworkObject;
+
     }
 }

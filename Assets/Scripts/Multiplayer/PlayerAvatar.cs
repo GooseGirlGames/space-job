@@ -75,6 +75,9 @@ public class PlayerAvatar : NetworkBehaviour {
     }
 
     public void OnAnimationChange(int previous, int current){
+        if (!m_PlayerAnimator) {
+            return;  // bye
+        }
         Debug.Log(m_LocalPlayer.PlayerName + "-> old ani: "+ previous + ", new ani:" + current);
         //m_PlayerAnimator.SetInteger("active_animation", current);
         if(current == 0){
