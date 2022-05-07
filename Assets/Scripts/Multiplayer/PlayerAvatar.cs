@@ -78,7 +78,7 @@ public class PlayerAvatar : NetworkBehaviour {
     }
 
     public void SetActiveAnimation(int animation_index){
-        Debug.Log("Interaction Animation Triggered: "+ animation_index);
+        //Debug.Log("Interaction Animation Triggered: "+ animation_index);
         m_ActiveAnimation.Value = animation_index;
         //m_PlayerAnimator.SetInteger("active_animation", animation_index);
     }
@@ -87,7 +87,7 @@ public class PlayerAvatar : NetworkBehaviour {
         if (!m_PlayerAnimator) {
             return;  // bye
         }
-        Debug.Log(m_LocalPlayer.PlayerName + "-> old ani: "+ previous + ", new ani:" + current);
+        //Debug.Log(m_LocalPlayer.PlayerName + "-> old ani: "+ previous + ", new ani:" + current);
         //m_PlayerAnimator.SetInteger("active_animation", current);
         if(current == 0){
             m_PlayerAnimator.SetTrigger("idle");
