@@ -58,6 +58,7 @@ public class ShipManager : NetworkBehaviour {
     public void TriggerPowerOutageEvent(){
         int error_idx = UnityEngine.Random.Range(0, ERROR_CODES.Length - 1);
         m_Power.Value = ERROR_CODES[error_idx];
+        Rooms[0].Oxygen = 0;
     }
     public bool TryResolvePowerOutageEvent(string solution_attempt) {
         if (solution_attempt == PowerSolutionCode(m_Power.Value)) {
@@ -69,6 +70,7 @@ public class ShipManager : NetworkBehaviour {
     }
     private void ResolvePowerOutageEvent() {
         m_Power.Value = HAS_POWER;
+        Rooms[0].Oxygen = 1;
     }
     private void Awake() {
         if (Instance == null) {
@@ -86,7 +88,7 @@ public class ShipManager : NetworkBehaviour {
                 ResolvePowerOutageEvent();
             }
         }
-        if (Input.GetKeyDown(KeyCode.O)) {
+        if (Input.GetKeyDown(KeyCode.O) && IsServer) {
             foreach (Room room in Rooms) {
                 Debug.Log(room.Name + ": " + room.Oxygen);
             }
