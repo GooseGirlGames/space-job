@@ -101,10 +101,32 @@ MonoBehaviour:
         m_PreInfinity: 0
         m_PostInfinity: 0
         m_RotationOrder: 0
+  - m_From: red cam
+    m_To: blue cam
+    m_Blend:
+      m_Style: 0
+      m_Time: 2
+      m_CustomCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 0
+        m_PostInfinity: 0
+        m_RotationOrder: 0
+  - m_From: blue cam
+    m_To: red cam
+    m_Blend:
+      m_Style: 0
+      m_Time: 2
+      m_CustomCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 0
+        m_PostInfinity: 0
+        m_RotationOrder: 0
   - m_From: '**ANY CAMERA**'
     m_To: '**ANY CAMERA**'
     m_Blend:
-      m_Style: 0
+      m_Style: 1
       m_Time: 2
       m_CustomCurve:
         serializedVersion: 2
