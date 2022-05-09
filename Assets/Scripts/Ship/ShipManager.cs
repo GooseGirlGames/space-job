@@ -89,10 +89,16 @@ public class ShipManager : NetworkBehaviour {
     }
 
     private void UpdatePosition(float delta_time){
-        Vector2 direction = new Vector2(1f,0f);
-        float tx = m_Position.Value.x;
-        float ty = m_Position.Value.y;
-        
+        Vector2 direction = new Vector2(1f ,0f);
+        Debug.Log("Speed: " + m_Speed.Value + " Rot: " + m_Rotation.Value);
+
+        direction.x = (Mathf.Cos(m_Rotation.Value*(Mathf.PI/180f))*direction.x);
+        direction.y = (Mathf.Sin(m_Rotation.Value*(Mathf.PI/180f))*direction.x);
+
+        m_Position.Value = (m_Position.Value + direction) * m_Speed.Value * delta_time;
+        Debug.Log("Position: " + m_Position.Value + " ,direction: " + direction);
+        //float tx = m_Position.Value.x;
+        //float ty = m_Position.Value.y;
     }
 
     private void Update() {
@@ -108,5 +114,23 @@ public class ShipManager : NetworkBehaviour {
                 Debug.Log(room.Name + ": " + room.Oxygen);
             }
         }
+
+
+        if (Input.GetKey(KeyCode.UpArrow)){
+            m_Speed.Value += 0.1f;
+        }
+        if (Input.GetKey(KeyCode.DownArrow)){
+            if(m_Speed.Value >= 0f){
+                m_Speed.Value -= 0.1f;
+            }
+        }
+        if (Input.GetKey(KeyCode.LeftArrow)){
+            m_Rotation.Value += 1f;
+        }
+        if (Input.GetKey(KeyCode.RightArrow)){
+            m_Rotation.Value -= 1f;
+        }
+
+        UpdatePosition(Time.deltaTime);
     }
 }
