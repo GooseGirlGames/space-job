@@ -85,7 +85,7 @@ public class Terminal : Interactable<FixedString32Bytes> {
     private void UpdateText() {
         Text.text = m_ErrorText;
         if (!ShipManager.Instance.HasPower) {
-        Text.text += "\n>" + Value + "|";
+            Text.text += "\n>" + Value + "|";
         }
     }
 

@@ -1,14 +1,58 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
+using TMPro;
 
-public class NavTerminal : Interactable<bool> {
+// Single-User Terminal
+public class NavTerminal : Interactable<int> {
 
-    protected override void Interaction() {
+    public static readonly int NOT_OCCUPIED = -1;
 
+    public TMP_Text Text;
+
+    private CameraSwap m_CameraSwap;
+
+    public override void Start() {
+        base.Start();
+        m_CameraSwap = GetComponent<CameraSwap>();
+        OnStateChange(NOT_OCCUPIED, NOT_OCCUPIED);
+        if (IsServer) {
+            m_State.Value = NOT_OCCUPIED;
+        }
     }
 
-    public override void OnStateChange(bool prev, bool current) {
+    [ServerRpc(RequireOwnership = false)]
+    public void TryToggleOccupiedServerRpc(int playerId) {
+        Debug.Log("Hello!" + playerId);
+        if (Value == NOT_OCCUPIED) {  // no one at terminal
+            m_State.Value = playerId;
+        } else if (Value == playerId) {  // player left terminal
+            m_State.Value = NOT_OCCUPIED;
+        }
+        // Otherwise, someone else is at the terminal.  it will remain occupied
+    }
 
+    protected override void Interaction() {
+        TryToggleOccupiedServerRpc((int)NetworkManager.Singleton.LocalClientId);
+    }
+
+    public override void OnStateChange(int prev, int current) {
+        Debug.Log("StateChange!" + current);
+        if (current == NOT_OCCUPIED) {
+            if (prev == (int)NetworkManager.Singleton.LocalClientId) {
+                PlayerManager.Instance.LocalPlayer.Avatar.ReleaseMovementLock(GetHashCode());
+                m_CameraSwap.SwitchAway();
+            }
+            DisplayText("Hello!");
+        } else {
+            if (current == (int)NetworkManager.Singleton.LocalClientId) {
+                m_CameraSwap.SwitchTo();
+                PlayerManager.Instance.LocalPlayer.Avatar.LockMovement(GetHashCode());
+            }
+            DisplayText("Hello, " + current + "!");
+        }
+    }
+
+    public void DisplayText(string text) {
+        Text.text = text;
     }
 }
