@@ -55,7 +55,7 @@ public class Map : MonoBehaviour {
 
     IEnumerator SpeedBoostCoroutine() {
         while (true) {
-            // TODO UpdateMinimap(ShipManager.Instance.hewwo());
+            UpdateMinimap(ShipManager.Instance.GetShipPosition());
             yield return new WaitForSeconds(5);
         }
     }
