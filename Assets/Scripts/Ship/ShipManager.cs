@@ -89,13 +89,11 @@ public class ShipManager : NetworkBehaviour {
     }
 
     private void UpdatePosition(float delta_time){
-        Vector2 direction = new Vector2(1f ,0f);
-        Debug.Log("Speed: " + m_Speed.Value + " Rot: " + m_Rotation.Value);
 
-        direction.x = (Mathf.Cos(m_Rotation.Value*(Mathf.PI/180f))*direction.x);
-        direction.y = (Mathf.Sin(m_Rotation.Value*(Mathf.PI/180f))*direction.x);
+        float angle = m_Rotation.Value*(Mathf.PI/180f);
+        Vector2 direction = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
 
-        m_Position.Value = (m_Position.Value + direction) * m_Speed.Value * delta_time;
+        m_Position.Value = m_Position.Value + (direction * m_Speed.Value * delta_time);
         Debug.Log("Position: " + m_Position.Value + " ,direction: " + direction);
         //float tx = m_Position.Value.x;
         //float ty = m_Position.Value.y;
