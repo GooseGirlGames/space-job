@@ -25,7 +25,6 @@ public class PlayerAvatar : NetworkBehaviour {
     public Room CurrentRoom {
         get => m_CurrentRoom;
         set {
-            Debug.Log(name + " entered " + value.Name);
             m_CurrentRoom = value;
         }
     }
