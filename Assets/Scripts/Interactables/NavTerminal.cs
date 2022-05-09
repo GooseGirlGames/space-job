@@ -48,7 +48,7 @@ public class NavTerminal : Interactable<int> {
                 m_CameraSwap.SwitchTo();
                 PlayerManager.Instance.LocalPlayer.Avatar.LockMovement(GetHashCode());
             }
-            DisplayText("Hello, " + current + "!");
+            DisplayText("Hello, " + current + "!\n" );
         }
     }
 

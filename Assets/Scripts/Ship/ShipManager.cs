@@ -63,6 +63,17 @@ public class ShipManager : NetworkBehaviour {
         m_Power.OnValueChanged -= OnPowerChange;
     }
 
+    public float GetShipSpeed(){
+        return m_Speed.Value;
+    }
+    public float GetShipAngle(){
+        return m_Rotation.Value;
+    }
+    public Vector2 GetShipPosition (){
+        return m_Position.Value;
+    }
+
+
     public void TriggerPowerOutageEvent(){
         int error_idx = UnityEngine.Random.Range(0, ERROR_CODES.Length - 1);
         m_Power.Value = ERROR_CODES[error_idx];
@@ -94,7 +105,7 @@ public class ShipManager : NetworkBehaviour {
         Vector2 direction = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
 
         m_Position.Value = m_Position.Value + (direction * m_Speed.Value * delta_time);
-        Debug.Log("Position: " + m_Position.Value + " ,direction: " + direction);
+        //Debug.Log("Position: " + m_Position.Value + " ,direction: " + direction);
         //float tx = m_Position.Value.x;
         //float ty = m_Position.Value.y;
     }
