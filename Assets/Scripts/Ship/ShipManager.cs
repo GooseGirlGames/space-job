@@ -11,6 +11,10 @@ public class ShipManager : NetworkBehaviour {
     private NetworkVariable<float> m_Oxygen = new NetworkVariable<float>(1f);
     private NetworkVariable<char> m_Power = new NetworkVariable<char>(HAS_POWER);
     public static ShipManager Instance;
+    private NetworkVariable<Vector2> m_Position = new NetworkVariable<Vector2>(new Vector2(512f, 512f));
+    private NetworkVariable<float> m_Rotation = new NetworkVariable<float>(0f);
+    private NetworkVariable<float> m_Speed = new NetworkVariable<float>(0f);
+    private Map m_Map;
 
     public static char[] ERROR_CODES = {'2', 'e', (char)0xba, (char)42, '\n'};
     public static string PowerSolutionCode(char error_code) {
@@ -23,6 +27,7 @@ public class ShipManager : NetworkBehaviour {
     }
 
     void Start() {
+        m_Map = GetComponent<Map>();
         /*
         foreach(char error_code in ERROR_CODES) {
             Debug.Log(ErrorCodeDisplay(error_code) + " / " + PowerSolutionCode(error_code));
@@ -35,6 +40,9 @@ public class ShipManager : NetworkBehaviour {
     public bool HasPower{
         get => m_Power.Value == HAS_POWER;
     }
+
+
+
     protected void OnPowerChange(char _, char power){
         bool hasPower = power == HAS_POWER;
         LightManager.Instance.SetBackup(!hasPower);
@@ -78,6 +86,13 @@ public class ShipManager : NetworkBehaviour {
         } else {
             Destroy(this);
         }
+    }
+
+    private void UpdatePosition(float delta_time){
+        Vector2 direction = new Vector2(1f,0f);
+        float tx = m_Position.Value.x;
+        float ty = m_Position.Value.y;
+        
     }
 
     private void Update() {

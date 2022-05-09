@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7061377893371510624}
   - component: {fileID: 4912015480305189325}
   - component: {fileID: -4673841838035738812}
+  - component: {fileID: 1047239872381265899}
   m_Layer: 0
   m_Name: ShipManager
   m_TagString: Untagged
@@ -44,6 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d58abe5c6eec50e685d1f889b0877a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Rooms: []
+  PowerTerminal: {fileID: 0}
 --- !u!114 &-4673841838035738812
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60,3 +63,16 @@ MonoBehaviour:
   AlwaysReplicateAsRoot: 0
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
+--- !u!114 &1047239872381265899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9204123625600447561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f19b0d0415cf9eee9b83da923dff54f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MapTexture: {fileID: 2800000, guid: 725cf97e7e411dc90acbc1def5bed10c, type: 3}
