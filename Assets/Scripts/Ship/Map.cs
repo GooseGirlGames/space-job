@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public enum Event {
@@ -14,6 +15,14 @@ public struct MapState {
 
 public class Map : MonoBehaviour {
     public Texture2D MapTexture;
+    public Texture2D MinimapTexture;
+
+    [SerializeField]
+    private float m_MinimapZoom = 6f;
+
+    void Start() {
+        StartCoroutine(SpeedBoostCoroutine());
+    }
 
     public MapState GetState(Vector2 pos) {
         MapState state = new MapState();
@@ -26,5 +35,28 @@ public class Map : MonoBehaviour {
             state.risk = color.r;
         }
         return state;
+    }
+
+    public void UpdateMinimap(Vector2 shipPos) {
+        Vector2 dims = new Vector2(MinimapTexture.width, MinimapTexture.height);
+        for (int x = 0; x < MinimapTexture.width; ++x) {
+            for (int y = 0; y < MinimapTexture.width; ++y) {
+                Vector2 offset = new Vector2(x, y) - (0.5f * dims);
+                float risk = GetState(shipPos + m_MinimapZoom * offset).risk;
+                Color col = new Color(0.2f, risk, 0.2f);
+                if (offset.magnitude <= 2) {
+                    col.r = 0.6f;
+                }
+                MinimapTexture.SetPixel(x, y, col);
+            }
+        }
+        MinimapTexture.Apply();
+    }
+
+    IEnumerator SpeedBoostCoroutine() {
+        while (true) {
+            // TODO UpdateMinimap(ShipManager.Instance.hewwo());
+            yield return new WaitForSeconds(5);
+        }
     }
 }

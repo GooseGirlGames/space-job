@@ -76,3 +76,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MapTexture: {fileID: 2800000, guid: 725cf97e7e411dc90acbc1def5bed10c, type: 3}
+  MinimapTexture: {fileID: 2800000, guid: ca898c11e80b8101e8d42fbe8b37c3a1, type: 3}
