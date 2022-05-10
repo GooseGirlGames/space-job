@@ -90,6 +90,7 @@ Transform:
   m_LocalScale: {x: 1.4896305, y: 2.3422115, z: 1.4896305}
   m_Children:
   - {fileID: 2557844565442388501}
+  - {fileID: 5223830424159481352}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -179.394, z: 0}
@@ -155,7 +156,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NeedsPower: 0
+  HidePlayer: 0
   TriggeredAnimation: 4
+  TeleportPoint: {fileID: 0}
 --- !u!114 &3440226495771614361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,3 +188,33 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.44263473
   m_Center: {x: 0.54969525, y: -2.980231, z: -2.161523}
+--- !u!1 &4483826340343059163
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5223830424159481352}
+  m_Layer: 0
+  m_Name: teleportpoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5223830424159481352
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4483826340343059163}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.55000013, y: -2.842, z: -1.5499997}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2663302390344238625}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
