@@ -86,6 +86,11 @@ public class PlayerAvatar : NetworkBehaviour {
         //m_PlayerAnimator.SetInteger("active_animation", animation_index);
     }
 
+    [ServerRpc(RequireOwnership = false)]
+    public void SetPlayerPosServerRpc(PlayerPos position){
+        m_PlayerPos.Value = position;
+    }
+
     public void OnAnimationChange(int previous, int current){
         if (!m_PlayerAnimator) {
             return;  // bye
