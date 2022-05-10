@@ -94,8 +94,10 @@ public class PlayerAvatar : NetworkBehaviour {
     public void SetPlayerPosServerRpc(PlayerPos position){
         Debug.Log("teleport Point: " + position.Position + ", " + position.Rotation);
         Debug.Log("old: " + m_PlayerPos.Value.Position);
-        m_PlayerPos.Value = position;
+        //m_PlayerPos.Value = position;
         Debug.Log("new: " + m_PlayerPos.Value.Position);
+        m_Controller.transform.position = position.Position;
+        m_Controller.transform.rotation = position.Rotation;
     }
 
     public void OnAnimationChange(int previous, int current){
