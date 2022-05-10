@@ -84,6 +84,13 @@ public class PlayerAvatar : NetworkBehaviour {
         }
     }
 
+    public void Teleport(Transform target) {
+        bool prev_controller_enabled = m_Controller.enabled;
+        m_Controller.enabled = false;
+        transform.SetPositionAndRotation(target.position, target.rotation);
+        m_Controller.enabled = prev_controller_enabled;
+    }
+
     public void SetActiveAnimation(int animation_index){
         //Debug.Log("Interaction Animation Triggered: "+ animation_index);
         m_ActiveAnimation.Value = animation_index;

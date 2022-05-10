@@ -6,9 +6,7 @@ public class Chair : Interactable<bool>{
     public Transform TeleportPoint;
     public override void OnStateChange(bool previous, bool current){}
     protected override void Interaction(){
-        //Debug.Log("Chair interaction triggerd");
-        PlayerManager.Instance.LocalPlayer.Avatar.transform.rotation = TeleportPoint.rotation;
-        PlayerManager.Instance.LocalPlayer.Avatar.transform.position = TeleportPoint.position;
+        PlayerManager.Instance.LocalPlayer.Avatar.Teleport(TeleportPoint);
     }
     public override void OnNetworkSpawn()
     {
