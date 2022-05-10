@@ -8,9 +8,9 @@ public enum Event {
 }
 
 public struct MapState {
-    public Event ev;
-    public float risk;
-    // TODO Biomes
+    public Event ev;  // green
+    public float risk;  // red
+    // TODO Biomes (blue)
 }
 
 public class Map : MonoBehaviour {
@@ -42,10 +42,14 @@ public class Map : MonoBehaviour {
         for (int x = 0; x < MinimapTexture.width; ++x) {
             for (int y = 0; y < MinimapTexture.width; ++y) {
                 Vector2 offset = new Vector2(x, y) - (0.5f * dims);
-                float risk = GetState(shipPos + m_MinimapZoom * offset).risk;
+                var state = GetState(shipPos + m_MinimapZoom * offset);
+                float risk = ((int)state.risk*5)/5.0f;
                 Color col = new Color(0.2f, risk, 0.2f);
                 if (offset.magnitude <= 2) {
-                    col.r = 0.6f;
+                    col.r = 1f;
+                }
+                if (state.ev == Event.POWER_OUTAGE) {
+                    col.b = 1f;
                 }
                 MinimapTexture.SetPixel(x, y, col);
             }
@@ -56,7 +60,7 @@ public class Map : MonoBehaviour {
     IEnumerator SpeedBoostCoroutine() {
         while (true) {
             UpdateMinimap(ShipManager.Instance.GetShipPosition());
-            yield return new WaitForSeconds(5);
+            yield return new WaitForSeconds(1);
         }
     }
 }

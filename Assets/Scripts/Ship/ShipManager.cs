@@ -113,9 +113,11 @@ public class ShipManager : NetworkBehaviour {
         Vector2 direction = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
 
         m_Position.Value = m_Position.Value + (direction * m_Speed.Value * delta_time);
-        //Debug.Log("Position: " + m_Position.Value + " ,direction: " + direction);
-        //float tx = m_Position.Value.x;
-        //float ty = m_Position.Value.y;
+
+        MapState state = m_Map.GetState(m_Position.Value);
+        if (state.ev == Event.POWER_OUTAGE) {
+            TriggerPowerOutageEvent();
+        }
     }
 
     private void Update() {
