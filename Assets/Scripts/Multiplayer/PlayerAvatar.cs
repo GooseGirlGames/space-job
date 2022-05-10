@@ -97,16 +97,6 @@ public class PlayerAvatar : NetworkBehaviour {
         //m_PlayerAnimator.SetInteger("active_animation", animation_index);
     }
 
-    [ServerRpc(RequireOwnership = false)]
-    public void SetPlayerPosServerRpc(PlayerPos position){
-        Debug.Log("teleport Point: " + position.Position + ", " + position.Rotation);
-        Debug.Log("old: " + m_PlayerPos.Value.Position);
-        //m_PlayerPos.Value = position;
-        Debug.Log("new: " + m_PlayerPos.Value.Position);
-        m_Controller.transform.position = position.Position;
-        m_Controller.transform.rotation = position.Rotation;
-    }
-
     public void OnAnimationChange(int previous, int current){
         if (!m_PlayerAnimator) {
             return;  // bye
