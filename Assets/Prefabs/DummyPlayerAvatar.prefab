@@ -457,6 +457,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   nameText: {fileID: 8939025460541712738}
+  normalMaterial: {fileID: -876546973899608171, guid: 98b11bf6f5130be0ab222d572ab4b4d6, type: 3}
+  transparentMaterial: {fileID: 2100000, guid: 55a1ebda3c1d0ec63a6143342c575ead, type: 2}
 --- !u!222 &7404256255760437957
 CanvasRenderer:
   m_ObjectHideFlags: 0

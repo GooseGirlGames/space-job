@@ -56,12 +56,16 @@ public class PlayerAvatar : NetworkBehaviour {
     public const float GRAVITY = -10f;  //in case of zero gravity this need to change
     private PersistentPlayer m_LocalPlayer;
     private Vector3 m_Velocity;
-
+    private SkinnedMeshRenderer m_PlayerMesh;
     public TMP_Text nameText;
+    public Material normalMaterial;
+    public Material transparentMaterial;
+    
 
     public void Start() {
         m_Controller = GetComponent<CharacterController>();
         m_PlayerAnimator = GetComponent<Animator>();
+        m_PlayerMesh = GetComponentInChildren<SkinnedMeshRenderer>();
     }
 
     void Update() {
@@ -201,10 +205,12 @@ public class PlayerAvatar : NetworkBehaviour {
         if (Input.GetKeyDown(KeyCode.Alpha1)){
             //armwava dance
             m_ActiveAnimation.Value = 3;
+            //HidePlayer(true);
         }
         if (Input.GetKeyDown(KeyCode.Alpha2)){
             //jumpingjacks
             m_ActiveAnimation.Value = 5;
+            //HidePlayer(false);
         }
         if (Input.GetKeyDown(KeyCode.Alpha3)){
             //drink
@@ -248,6 +254,15 @@ public class PlayerAvatar : NetworkBehaviour {
         //m_PlayerAnimator.SetFloat("speed", 0.1f);
         transform.position = m_PlayerPos.Value.Position;
         transform.rotation = m_PlayerPos.Value.Rotation;
+    }
+
+    public void HidePlayer(bool on){
+        if(on){
+            m_PlayerMesh.sharedMaterial = transparentMaterial;
+        }
+        else{
+            m_PlayerMesh.sharedMaterial = normalMaterial;
+        }
     }
 
     private void ShowInInventory(Transform hand, NetworkObject item) {

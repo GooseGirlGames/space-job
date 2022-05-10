@@ -8,6 +8,7 @@ public abstract class InteractableBase : NetworkBehaviour {
     protected MeshRenderer m_Renderer;
     protected InteractionRange m_InteractionRange;
     public bool NeedsPower = false;
+    public bool HidePlayer = false;
     public int TriggeredAnimation = 2;
     protected bool m_IsInArea = false;
 
@@ -71,6 +72,7 @@ public abstract class InteractableBase : NetworkBehaviour {
         if (m_IsInArea && Input.GetButtonDown("Fire1") && (ShipManager.Instance.HasPower || !NeedsPower)) {
             Interaction();
             PlayerManager.Instance.LocalPlayer.Avatar.SetActiveAnimation(TriggeredAnimation);
+            PlayerManager.Instance.LocalPlayer.Avatar.HidePlayer(HidePlayer);
         }
     }
     protected void OnMouseExit() {
