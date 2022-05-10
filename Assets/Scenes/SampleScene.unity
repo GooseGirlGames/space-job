@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.040637374, g: 0.24334216, b: 0.31317982, a: 1}
+  m_IndirectSpecularColor: {r: 0.040689424, g: 0.24335492, b: 0.31316802, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -715,6 +715,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NeedsPower: 0
+  HidePlayer: 0
   TriggeredAnimation: 4
   map_cam: {fileID: 2066049046}
 --- !u!114 &91123160
@@ -5375,6 +5376,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NeedsPower: 1
+  HidePlayer: 0
   TriggeredAnimation: 2
   ConnectedDoor: {fileID: 1376198743}
 --- !u!114 &1334458261
@@ -7250,6 +7252,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NeedsPower: 0
+  HidePlayer: 0
   TriggeredAnimation: -1
   cam: {fileID: 511035128}
   cam_front: {fileID: 1987586651}
@@ -8658,6 +8661,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1578173120}
+    - target: {fileID: 6424898792516956552, guid: eba1f3eaf6fd5ccf0b027049cd180739, type: 3}
+      propertyPath: HidePlayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6439138080631730457, guid: eba1f3eaf6fd5ccf0b027049cd180739, type: 3}
       propertyPath: m_Name
       value: NavTerminal
