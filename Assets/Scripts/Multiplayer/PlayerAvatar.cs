@@ -17,7 +17,7 @@ public struct PlayerPos {
 [RequireComponent(typeof(NetworkObject))]
 public class PlayerAvatar : NetworkBehaviour {
     private NetworkVariable<int> m_ActiveAnimation
-            = new NetworkVariable<int>(default, default, default);
+            = new NetworkVariable<int>(default, default, NetworkVariableWritePermission.Owner);
     private NetworkVariable<PlayerPos> m_PlayerPos
             = new NetworkVariable<PlayerPos>();
     private NetworkVariable<NetworkObjectReference> m_PrimaryItem
