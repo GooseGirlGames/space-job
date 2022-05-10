@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public enum Event {
@@ -15,13 +14,13 @@ public struct MapState {
 
 public class Map : MonoBehaviour {
     public Texture2D MapTexture;
-    public Texture2D MinimapTexture;
+    public Texture2D IngameMapTexture;
 
     [SerializeField]
     private float m_MinimapZoom = 6f;
 
     void Start() {
-        StartCoroutine(SpeedBoostCoroutine());
+        GenerateMap();
     }
 
     public MapState GetState(Vector2 pos) {
@@ -37,30 +36,18 @@ public class Map : MonoBehaviour {
         return state;
     }
 
-    public void UpdateMinimap(Vector2 shipPos) {
-        Vector2 dims = new Vector2(MinimapTexture.width, MinimapTexture.height);
-        for (int x = 0; x < MinimapTexture.width; ++x) {
-            for (int y = 0; y < MinimapTexture.width; ++y) {
-                Vector2 offset = new Vector2(x, y) - (0.5f * dims);
-                var state = GetState(shipPos + m_MinimapZoom * offset);
-                float risk = ((int)state.risk*5)/5.0f;
+    public void GenerateMap() {
+        for (int x = 0; x < IngameMapTexture.width; ++x) {
+            for (int y = 0; y < IngameMapTexture.width; ++y) {
+                var state = GetState(new Vector2(x, y));
+                float risk = (int)(state.risk*8)/8.0f;
                 Color col = new Color(0.2f, risk, 0.2f);
-                if (offset.magnitude <= 2) {
+                if (state.ev == Event.POWER_OUTAGE) {
                     col.r = 1f;
                 }
-                if (state.ev == Event.POWER_OUTAGE) {
-                    col.b = 1f;
-                }
-                MinimapTexture.SetPixel(x, y, col);
+                IngameMapTexture.SetPixel(x, y, col);
             }
         }
-        MinimapTexture.Apply();
-    }
-
-    IEnumerator SpeedBoostCoroutine() {
-        while (true) {
-            UpdateMinimap(ShipManager.Instance.GetShipPosition());
-            yield return new WaitForSeconds(1);
-        }
+        IngameMapTexture.Apply();
     }
 }
