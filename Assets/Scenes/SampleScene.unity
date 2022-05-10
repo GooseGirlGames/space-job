@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.040689424, g: 0.24335492, b: 0.31316802, a: 1}
+  m_IndirectSpecularColor: {r: 0.040689424, g: 0.24331626, b: 0.3131782, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2922,6 +2922,36 @@ MonoBehaviour:
   ScaleThreshold: 0.01
   InLocalSpace: 0
   Interpolate: 1
+--- !u!1 &714054839
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 714054840}
+  m_Layer: 0
+  m_Name: teleportpoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &714054840
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 714054839}
+  m_LocalRotation: {x: 0.3040436, y: -0.13337074, z: -0.3837326, w: 0.86169547}
+  m_LocalPosition: {x: 0.5929999, y: -1.8429999, z: -2.051}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2557844565487377164}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 24.937, y: -30.718, z: -54.96}
 --- !u!1001 &761672302
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9475,12 +9505,21 @@ PrefabInstance:
       propertyPath: GlobalObjectIdHash
       value: 2380931626
       objectReference: {fileID: 0}
+    - target: {fileID: 3440226495771614362, guid: c616f87c0eb4a7a47a6be775aa11935c, type: 3}
+      propertyPath: TeleportPoint
+      value: 
+      objectReference: {fileID: 714054840}
     - target: {fileID: 3440226495771614363, guid: c616f87c0eb4a7a47a6be775aa11935c, type: 3}
       propertyPath: m_Name
       value: diner_chair
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c616f87c0eb4a7a47a6be775aa11935c, type: 3}
+--- !u!4 &2557844565487377164 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2663302390344238625, guid: c616f87c0eb4a7a47a6be775aa11935c, type: 3}
+  m_PrefabInstance: {fileID: 2557844565487377163}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2617501647332472882
 Transform:
   m_ObjectHideFlags: 0

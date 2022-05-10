@@ -6,6 +6,10 @@ using TMPro;
 
 [System.Serializable]
 public struct PlayerPos {
+    public PlayerPos(Vector3 _Position, Quaternion _Rotation){
+        Position = _Position;
+        Rotation = _Rotation;
+    }
     public Vector3 Position;
     public Quaternion Rotation;
 }
@@ -88,7 +92,10 @@ public class PlayerAvatar : NetworkBehaviour {
 
     [ServerRpc(RequireOwnership = false)]
     public void SetPlayerPosServerRpc(PlayerPos position){
+        Debug.Log("teleport Point: " + position.Position + ", " + position.Rotation);
+        Debug.Log("old: " + m_PlayerPos.Value.Position);
         m_PlayerPos.Value = position;
+        Debug.Log("new: " + m_PlayerPos.Value.Position);
     }
 
     public void OnAnimationChange(int previous, int current){
