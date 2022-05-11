@@ -71,7 +71,7 @@ public abstract class InteractableBase : NetworkBehaviour {
         SetHighlight(m_IsInArea);
         if (m_IsInArea && Input.GetButtonDown("Fire1") && (!NeedsPower || ShipManager.Instance.HasPower)) {
             Interaction();
-            PlayerManager.Instance.LocalPlayer.Avatar.SetActiveAnimationServerRpc(TriggeredAnimation);
+            PlayerManager.Instance.LocalPlayer.Avatar.SetActiveAnimation(TriggeredAnimation);
             PlayerManager.Instance.LocalPlayer.Avatar.HidePlayer(HidePlayer);
         }
     }

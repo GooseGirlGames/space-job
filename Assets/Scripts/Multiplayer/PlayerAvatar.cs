@@ -91,8 +91,7 @@ public class PlayerAvatar : NetworkBehaviour {
         m_Controller.enabled = prev_controller_enabled;
     }
 
-    [ServerRpc]
-    public void SetActiveAnimationServerRpc(int animation_index){
+    public void SetActiveAnimation(int animation_index) {
         //Debug.Log("Interaction Animation Triggered: "+ animation_index);
         m_ActiveAnimation.Value = animation_index;
         //m_PlayerAnimator.SetInteger("active_animation", animation_index);
