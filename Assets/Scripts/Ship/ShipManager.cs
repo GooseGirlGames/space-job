@@ -132,7 +132,7 @@ public class ShipManager : NetworkBehaviour {
 
     private void CheckWinCondition(){
         float distance = (m_Destination.Value - m_Position.Value).magnitude; 
-        if (distance >= 3){
+        if (distance <= 3){
             Debug.Log("Hey you won");
         } 
     }
