@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.040689424, g: 0.24331626, b: 0.3131782, a: 1}
+  m_IndirectSpecularColor: {r: 0.040637374, g: 0.24334216, b: 0.31317982, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -413,31 +413,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 90291987610743079, guid: 4d5102c616c2228ca9d0d825f2d8a7f5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.8603535
+      value: -24.58
       objectReference: {fileID: 0}
     - target: {fileID: 90291987610743079, guid: 4d5102c616c2228ca9d0d825f2d8a7f5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.615917
+      value: 6.2199993
       objectReference: {fileID: 0}
     - target: {fileID: 90291987610743079, guid: 4d5102c616c2228ca9d0d825f2d8a7f5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -18.192677
+      value: -18.57
       objectReference: {fileID: 0}
     - target: {fileID: 90291987610743079, guid: 4d5102c616c2228ca9d0d825f2d8a7f5, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7793273
+      value: 0.95803833
       objectReference: {fileID: 0}
     - target: {fileID: 90291987610743079, guid: 4d5102c616c2228ca9d0d825f2d8a7f5, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.10549863
+      value: 0.28627473
       objectReference: {fileID: 0}
     - target: {fileID: 90291987610743079, guid: 4d5102c616c2228ca9d0d825f2d8a7f5, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.61208946
+      value: 0.0057546673
       objectReference: {fileID: 0}
     - target: {fileID: 90291987610743079, guid: 4d5102c616c2228ca9d0d825f2d8a7f5, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.082859404
+      value: -0.013275672
       objectReference: {fileID: 0}
     - target: {fileID: 90291987610743079, guid: 4d5102c616c2228ca9d0d825f2d8a7f5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -457,15 +457,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 90291987610743097, guid: 4d5102c616c2228ca9d0d825f2d8a7f5, type: 3}
       propertyPath: field of view
-      value: 9.8
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 90291987610743097, guid: 4d5102c616c2228ca9d0d825f2d8a7f5, type: 3}
       propertyPath: far clip plane
-      value: 5000
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 90291987610743097, guid: 4d5102c616c2228ca9d0d825f2d8a7f5, type: 3}
       propertyPath: near clip plane
-      value: 0.01
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 90291987610743097, guid: 4d5102c616c2228ca9d0d825f2d8a7f5, type: 3}
       propertyPath: m_CullingMask.m_Bits
@@ -7105,7 +7105,7 @@ MonoBehaviour:
   - m_Script
   m_LockStageInInspector: 
   m_StreamingVersion: 20170927
-  m_Priority: 219
+  m_Priority: 6
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 9187531067358983582}
   m_Follow: {fileID: 0}
