@@ -9,6 +9,8 @@ public class MapCam : MonoBehaviour {
     private Transform m_ShipIcon;
     [SerializeField]
     private Transform m_FlagIcon;
+    [SerializeField]
+    private Transform m_DirectionIcon;
 
     private static float Convert(float map_pos) {
         float unclamped = ((map_pos - 512.0f) / 512.0f) * m_MaxValue;
@@ -31,6 +33,11 @@ public class MapCam : MonoBehaviour {
         UpdateGoal();
     }
 
+    public static float Angle(Vector2 vec) {
+        if (vec.y >= 0) return Mathf.Acos(vec.x/vec.magnitude);
+        return -Mathf.Acos(vec.x/vec.magnitude);
+    }
+
     void UpdateGoal() {
         Vector2 goal_pos = ShipManager.Instance.GetGoal();
         float x = Convert(goal_pos.x);
@@ -38,5 +45,11 @@ public class MapCam : MonoBehaviour {
         float z = Convert(goal_pos.y);
 
         m_FlagIcon.position = new Vector3(x, y, z);
+
+        Vector2 target_direction = (ShipManager.Instance.GetGoal() - ShipManager.Instance.GetShipPosition());
+        target_direction.Normalize();
+
+        float angle_rad = Angle(target_direction);
+        m_DirectionIcon.localRotation = Quaternion.Euler(0, 0, angle_rad * 180f/Mathf.PI);
     }
 }
