@@ -131,7 +131,10 @@ public class ShipManager : NetworkBehaviour {
 
 
     private void CheckWinCondition(){
-
+        float distance = (m_Destination.Value - m_Position.Value).magnitude; 
+        if (distance >= 3){
+            Debug.Log("Hey you won");
+        } 
     }
 
     private void Update() {
@@ -148,7 +151,7 @@ public class ShipManager : NetworkBehaviour {
             }
         }
         
-
+        CheckWinCondition();
 
         if (Input.GetKey(KeyCode.UpArrow)){
             m_Speed.Value += 0.1f;
