@@ -15,6 +15,7 @@ public class ShipManager : NetworkBehaviour {
     private NetworkVariable<float> m_Rotation = new NetworkVariable<float>(0f);
     private NetworkVariable<float> m_Speed = new NetworkVariable<float>(0f);
     private Map m_Map;
+    private NetworkVariable<Vector2> m_Destination = new NetworkVariable<Vector2>(new Vector2(84f, 155f));
 
     public static char[] ERROR_CODES = {'2', 'e', (char)0xba, (char)42, '\n'};
     public static string PowerSolutionCode(char error_code) {
@@ -73,10 +74,18 @@ public class ShipManager : NetworkBehaviour {
         return m_Position.Value;
     }
 
+    public void SetGoal(Vector2 new_destination){
+        m_Destination.Value = new_destination;
+    }
+    public Vector2 GetGoal(){
+        return m_Destination.Value;
+    }
+
     [ServerRpc(RequireOwnership = false)]
     public void AccillerateSpeedServerRpc(float speed){
         m_Speed.Value = m_Speed.Value + speed;
     }
+
     [ServerRpc(RequireOwnership = false)]
     public void AccillerateAngleServerRpc(float angle){
         m_Rotation.Value = m_Rotation.Value + angle;
@@ -120,6 +129,11 @@ public class ShipManager : NetworkBehaviour {
         }
     }
 
+
+    private void CheckWinCondition(){
+
+    }
+
     private void Update() {
         if(Input.GetKeyDown(KeyCode.P) && IsServer){
             if (HasPower) {
@@ -133,6 +147,7 @@ public class ShipManager : NetworkBehaviour {
                 Debug.Log(room.Name + ": " + room.Oxygen);
             }
         }
+        
 
 
         if (Input.GetKey(KeyCode.UpArrow)){
