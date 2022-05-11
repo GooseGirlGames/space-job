@@ -200,6 +200,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NeedsPower: 1
+  HidePlayer: 0
   TriggeredAnimation: 2
   Text: {fileID: 7696512689232508913}
 --- !u!1 &7696512687888504299
