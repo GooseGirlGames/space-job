@@ -16,7 +16,7 @@ public class ShipManager : NetworkBehaviour {
     private NetworkVariable<float> m_Speed = new NetworkVariable<float>(0f);
     private Map m_Map;
     private NetworkVariable<Vector2> m_Destination = new NetworkVariable<Vector2>(new Vector2(84f, 155f));
-
+    private float m_DistanceToWin;
     public static char[] ERROR_CODES = {'2', 'e', (char)0xba, (char)42, '\n'};
     public static string PowerSolutionCode(char error_code) {
         return Convert.ToByte((error_code >> 1) ^ 'a').ToString("x2").ToUpper()
@@ -72,6 +72,10 @@ public class ShipManager : NetworkBehaviour {
     }
     public Vector2 GetShipPosition (){
         return m_Position.Value;
+    }
+
+    public float GetDistantToWin(){
+        return m_DistanceToWin;
     }
 
     public void SetGoal(Vector2 new_destination){
@@ -131,8 +135,8 @@ public class ShipManager : NetworkBehaviour {
 
 
     private void CheckWinCondition(){
-        float distance = (m_Destination.Value - m_Position.Value).magnitude; 
-        if (distance <= 3){
+        m_DistanceToWin = (m_Destination.Value - m_Position.Value).magnitude; 
+        if (m_DistanceToWin <= 5){
             Debug.Log("Hey you won");
         } 
     }
