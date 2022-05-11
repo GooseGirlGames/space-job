@@ -74,12 +74,12 @@ public class ShipManager : NetworkBehaviour {
     }
 
     [ServerRpc(RequireOwnership = false)]
-    public void SetShipSpeedServerRpc(float speed){
-        m_Speed.Value = speed;
+    public void AccillerateSpeedServerRpc(float speed){
+        m_Speed.Value = m_Speed.Value + speed;
     }
     [ServerRpc(RequireOwnership = false)]
-    public void SetShipAngleServerRpc(float angle){
-        m_Rotation.Value = angle;
+    public void AccillerateAngleServerRpc(float angle){
+        m_Rotation.Value = m_Rotation.Value + angle;
     }
 
     public void TriggerPowerOutageEvent(){
