@@ -36,23 +36,27 @@ public class NavTerminal : Interactable<int> {
     }
 
     public override void OnStateChange(int prev, int current) {
-        Debug.Log("StateChange!" + current + ShipManager.Instance.GetShipPosition());
+        //Debug.Log("StateChange!" + current + ShipManager.Instance.GetShipPosition());
         if (current == NOT_OCCUPIED) {
             if (prev == (int)NetworkManager.Singleton.LocalClientId) {
                 PlayerManager.Instance.LocalPlayer.Avatar.ReleaseMovementLock(GetHashCode());
                 m_CameraSwap.SwitchAway();
             }
-            DisplayText("Hello!\nWorp: " + ShipManager.Instance.GetShipSpeed());
         } else {
             if (current == (int)NetworkManager.Singleton.LocalClientId) {
                 m_CameraSwap.SwitchTo();
                 PlayerManager.Instance.LocalPlayer.Avatar.LockMovement(GetHashCode());
             }
-            DisplayText("Hello, " + current + "!\nWorp: " + ShipManager.Instance.GetShipSpeed());
         }
     }
 
     public void DisplayText(string text) {
         Text.text = text;
+    }
+    public override void Update() {
+        base.Update();
+        DisplayText("Position: " + ShipManager.Instance.GetShipPosition()+
+                    "\n Speed: " + ShipManager.Instance.GetShipSpeed()+ 
+                    " ,Angle: " + ShipManager.Instance.GetShipAngle());
     }
 }
