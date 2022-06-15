@@ -1,7 +1,9 @@
 # 1. Blender
 1. Keep everything at a realistic scale.
 2. Remember to apply all transforms (`Ctrl+A`)
-3. Export options, see screenshot:
+3. Make sure your normals are correct, i.e. no red faces are visible
+[when showing face orientation](img/shownorms.png)!
+4. Export options, see screenshot:
 
 ![blenderexport](img/fbx_export.png)
 
@@ -15,6 +17,18 @@ faces a different way, select the appropriate axis as "forward".
 In any case, `Z` will be the "up" axis.
 
 (Note: The `ship.fbx` is exported with default settings.)
+
+<details>
+    <summary>
+        HELP!!! Not all animations are exported.
+    </summary>
+    <p>
+        In Blender, open up a *Nonlinear Animation* window....<br>
+        <img src="img/nonlin.png" /><br>
+        ...and check the boxes next to all animations you need.<br>
+        <img src="img/nonlin2.png" />
+    </p>
+</details>
 
 # 2. GIMP/Krita/PS/Paint/etc
 1. Texture size should be a power of two (e.g. 1024x1024, 2048x2048,
@@ -30,7 +44,7 @@ In any case, `Z` will be the "up" axis.
     * Materials:  Material Creation Mode:  None
 
 ![importmodel](img/fbx_import_model.png)
-![importmodel](img/fbx_import_materials.png)
+![importmaterials](img/fbx_import_materials.png)
 
 2. Put the object into the scene
 3. Create a material with the "Custom/Simple Lit Affine" shader
