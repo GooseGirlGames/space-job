@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-// using Unity.Netcode;
+using Unity.Netcode;
 using TMPro;
 
 public class GameManager : MonoBehaviour {
@@ -22,12 +22,9 @@ public class GameManager : MonoBehaviour {
     }
 
     void Start() {
-        /*
         NetworkManager.Singleton.OnInitialized += () => {
-            Debug.Log("Network initialized");
-            // NetworkManager.Singleton.SceneManager.OnLoad += OnSceneLoad;
+            NetworkManager.Singleton.SceneManager.OnLoad += OnSceneLoad;
         };
-        */
     }
 
     void Update() {
@@ -39,8 +36,12 @@ public class GameManager : MonoBehaviour {
     }
 
     private void OnSceneLoad(ulong clientId, string scene, LoadSceneMode loadSceneMode, AsyncOperation op) {
-        //m_LoadingScreen.enabled = true;  TODO re-enable
-        //StartCoroutine(LoadingScreenCoroutine(op));
+        m_LoadingScreen.enabled = true;
+        var ava = PlayerManager.Instance.LocalPlayer?.Avatar;
+        if (ava) {
+            ava.Spawned.Value = false;
+        }
+        StartCoroutine(LoadingScreenCoroutine(op));
     }
 
     private IEnumerator LoadingScreenCoroutine(AsyncOperation op) {
@@ -48,14 +49,12 @@ public class GameManager : MonoBehaviour {
             m_LoadingScreenText.text = "Loading (" + (int)(100 * op.progress) + "%)";
             yield return new WaitForEndOfFrame();
         }
-        m_LoadingScreenText.text = "Loading done.  Waiting for players...";
-    }
 
-    // called by PlayerManager
-    public void OnPlayersReady() {
-        Debug.Log("!ydaer pihS");
+        m_LoadingScreenText.text = "Loading done.  Waiting for players...";
+        while (!PlayerManager.Instance.AllPlayerAvatarsSpawned) {
+            yield return new WaitForEndOfFrame();
+        }
         m_LoadingScreen.enabled = false;
     }
-
 
 }

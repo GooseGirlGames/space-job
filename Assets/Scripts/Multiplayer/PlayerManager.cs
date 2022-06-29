@@ -29,6 +29,17 @@ public class PlayerManager : NetworkBehaviour {
         get => m_LocalPlayer;
     }
 
+    public bool AllPlayerAvatarsSpawned {
+        get {
+            foreach (var pplayer in Players) {
+                if (!pplayer.Avatar || !pplayer.Avatar.Spawned.Value) {
+                    return false;
+                }
+            }
+            return true;
+        }
+    }
+
     public string LobbyInfo {
         get {
             string info = m_PlayerCount.Value + "/4: ";
@@ -81,9 +92,8 @@ public class PlayerManager : NetworkBehaviour {
                     PersistentPlayer player = po.GetComponent<PersistentPlayer>();
 
                     if (m_InGame) {  // player joined in-progress game
-                        Debug.Log("Persistenplayer spawned? " + player.IsSpawned);
-                        player.SpawnAvatar(PlayerSpawnLocation.GetSpawn());  // TODO spawn as dead in medbay
-                        Debug.Log("Persistenplayer spawned? " + player.IsSpawned);
+                        player.SpawnAvatar(PlayerSpawnLocation.GetSpawn());  // TODO spawn as dead in medbay?
+                        player.Avatar.SetSpawnedClientRpc();
                     }
 
                     Debug.Log("Connect: " + player.PlayerName);
@@ -137,9 +147,13 @@ public class PlayerManager : NetworkBehaviour {
 
         TeleportPlayerAvatarsToSpawnLocations();
         ShipReadyClientRpc();
+        foreach (var pplayer in PlayerManager.Instance.Players) {
+            pplayer.Avatar.SetSpawnedClientRpc();
+        }
     }
 
     public void TeleportPlayerAvatarsToSpawnLocations() {
+        Debug.Log("TELEPORTING AVATARS TO SPAWN");
         var avatars = FindObjectsOfType<PlayerAvatar>();
         foreach (var avatar in avatars) {
             var spawn_location = PlayerSpawnLocation.GetSpawn();
@@ -156,6 +170,9 @@ public class PlayerManager : NetworkBehaviour {
             target_pos.Rotation = spawn_location.rotation;
 
             avatar.TeleportClientRpc(target_pos);
+            foreach (var pplayer in PlayerManager.Instance.Players) {
+                pplayer.Avatar.SetSpawnedClientRpc();
+            }
         }
     }
 
@@ -168,6 +185,9 @@ public class PlayerManager : NetworkBehaviour {
 
         StartShip();
         ShipReadyClientRpc();
+        foreach (var pplayer in PlayerManager.Instance.Players) {
+            pplayer.Avatar.SetSpawnedClientRpc();
+        }
     }
 
     public void StartShip() {
@@ -185,7 +205,6 @@ public class PlayerManager : NetworkBehaviour {
     [ClientRpc]
     private void ShipReadyClientRpc() {
         Debug.Log("Ship ready!");
-        GameManager.Instance.OnPlayersReady();
     }
 
     [ServerRpc(RequireOwnership = false)]

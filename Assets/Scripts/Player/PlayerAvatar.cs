@@ -23,6 +23,8 @@ public class PlayerAvatar : NetworkBehaviour {
     private Renderer m_PlayerMesh;
     private PlayerRagdoll m_Ragdoll;
     private Coroutine m_DeathReviveCoroutine = null;
+    public NetworkVariable<bool> Spawned =
+            new NetworkVariable<bool>(false, default, NetworkVariableWritePermission.Owner);
 
     /* === MOVEMENT & ROOMS === */
     public const float GRAVITY = -10f;  //in case of zero gravity this need to change
@@ -357,6 +359,13 @@ public class PlayerAvatar : NetworkBehaviour {
     [ClientRpc]
     public void TeleportClientRpc(PlayerPos target) {
         Teleport(target.Position, target.Rotation);
+    }
+
+    [ClientRpc]
+    public void SetSpawnedClientRpc() {
+        if (IsOwner) {
+            Spawned.Value = true;
+        }
     }
 
     public void LockMovement(int locker) {
