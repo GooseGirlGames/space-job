@@ -1,8 +1,2 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class RevivePodTerminal : TwoLevelInteractable
-{
-    
+public class RevivePodTerminal : TwoLevelInteractable {
 }
