@@ -58,7 +58,7 @@ public class PlayerAnimationController : NetworkBehaviour {
     }
 
     public void OnSpeedChange(float speed){
-        m_PlayerAnimator.SetFloat("speed", speed);
+        m_PlayerAnimator?.SetFloat("speed", speed);
     }
 
     void Update() {
