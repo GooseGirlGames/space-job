@@ -46,7 +46,8 @@ public class GameManager : MonoBehaviour {
 
     private IEnumerator LoadingScreenCoroutine(AsyncOperation op) {
         while (!op.isDone) {
-            m_LoadingScreenText.text = "Loading (" + (int)(100 * op.progress) + "%)";
+            float progress = Mathf.Clamp(op.progress/0.89f, 0.0f, 1.0f);
+            m_LoadingScreenText.text = "Loading (" + (int)(100 * progress) + "%)";
             yield return new WaitForEndOfFrame();
         }
 
