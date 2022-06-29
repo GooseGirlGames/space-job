@@ -21,9 +21,12 @@ public class TwoLevelInteractable : Interactable<int> {
 
     private bool m_NeedsPowerInitial;
 
+    public virtual void Awake() {
+        m_CameraSwap = GetComponent<CameraSwap>();
+    }
+
     public override void Start() {
         base.Start();
-        m_CameraSwap = GetComponent<CameraSwap>();
         OnStateChange(NOT_OCCUPIED, NOT_OCCUPIED);
         if (IsServer) {
             m_State.Value = NOT_OCCUPIED;
