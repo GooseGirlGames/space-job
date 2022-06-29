@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using Unity.Netcode;
 
-public struct GoosePosRot {
+public struct GoosePosRot : INetworkSerializeByMemcpy {
     public Vector3 pos;
     public Quaternion rot;
 }

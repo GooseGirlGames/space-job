@@ -6,7 +6,7 @@ using TMPro;
 using UnityEngine.SceneManagement;
 
 [System.Serializable]
-public struct PlayerPos {
+public struct PlayerPos : INetworkSerializeByMemcpy {
     public PlayerPos(Vector3 _Position, Quaternion _Rotation){
         Position = _Position;
         Rotation = _Rotation;
