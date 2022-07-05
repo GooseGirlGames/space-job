@@ -59,8 +59,19 @@ public class ControllerInputHelper : MonoBehaviour {
     }
 
     private void DrawInteractionUI(InteractableBase interactable, Button button) {
+        var pos_world = new Vector3();
+        var colliders = interactable.GetComponents<Collider>();
+        if (colliders.Length > 0) {
+            foreach (var collider in colliders) {
+                pos_world += collider.bounds.center;
+            }
+            pos_world /= colliders.Length;
+        } else {
+            pos_world = interactable.transform.position;
+        }
+
         var cam = CameraBrain.Instance.OutputCamera;
-        var pos_screen = cam.WorldToScreenPoint(interactable.transform.position);
+        var pos_screen = cam.WorldToScreenPoint(pos_world);
 
         button.transform.position = pos_screen;
         button.onClick.RemoveAllListeners();

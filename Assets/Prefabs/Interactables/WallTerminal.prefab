@@ -216,6 +216,7 @@ MonoBehaviour:
   TriggeredAnimation: 2
   LastUse: 0
   CanInteract: 1
+  m_InteractAction: {fileID: 0}
   m_Interactables:
   - {fileID: 3313314788457865633}
   - {fileID: 7205389007623453036}
@@ -476,9 +477,9 @@ MonoBehaviour:
   TriggeredAnimation: 2
   LastUse: 0
   CanInteract: 1
+  m_InteractAction: {fileID: 0}
   ConnectedDoor: {fileID: 0}
   ShouldClose: 1
-  DoorTerminal: {fileID: 1295957410688335231}
 --- !u!65 &4774484218857587200
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -725,9 +726,9 @@ MonoBehaviour:
   TriggeredAnimation: 2
   LastUse: 0
   CanInteract: 1
+  m_InteractAction: {fileID: 0}
   ConnectedDoor: {fileID: 0}
   ShouldClose: 0
-  DoorTerminal: {fileID: 1295957410688335231}
 --- !u!65 &1356384088966359547
 BoxCollider:
   m_ObjectHideFlags: 0
