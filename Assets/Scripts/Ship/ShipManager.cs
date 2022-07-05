@@ -230,6 +230,7 @@ public class ShipManager : NetworkBehaviour {
     }
 
     private void Update() {
+        /* TODO MIGRATE TO INPUTSYSTEM
         if(Input.GetKeyDown(KeyCode.P) && IsServer){
             if (HasPower) {
                 TriggerPowerOutageEvent();
@@ -250,10 +251,12 @@ public class ShipManager : NetworkBehaviour {
                 Debug.Log(room.Name + ": " + room.RoomOxygen);
             }
         }
+        */
         
         CheckWinCondition();
 
         if (IsServer) {
+            /* TODO MIGRATE TO INPUTSYSTEM
             if (Input.GetKey(KeyCode.UpArrow)){
                 m_Speed.Value += 0.1f;
             }
@@ -268,6 +271,7 @@ public class ShipManager : NetworkBehaviour {
             if (Input.GetKey(KeyCode.RightArrow)){
                 m_Rotation.Value -= 1f;
             }
+            */
 
             UpdatePosition();
         }

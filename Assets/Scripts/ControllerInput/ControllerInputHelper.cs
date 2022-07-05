@@ -19,7 +19,9 @@ public class ControllerInputHelper : MonoBehaviour {
     }
 
     void Update() {
-        string text = "AVAILABLE INTERACTABLES:\n";
+        string text = "SELECTED UI ELEMENT:\n";
+        text += EventSystem.current.currentSelectedGameObject.name + "\n\n";
+        text += "AVAILABLE INTERACTABLES:\n";
         foreach (var i in m_AvailableInteractables) {
             text += i.name + "\n";
         }
@@ -27,21 +29,21 @@ public class ControllerInputHelper : MonoBehaviour {
     }
 
     void OnGUI() {
+        int interactable_idx = 0;
         foreach (var button in m_Buttons) {
-            button.transform.position = new Vector2(-1000, -1000);
-            button.interactable = false;
-            button.enabled = false;
-        }
-        int button_idx = 0;
-        foreach (var interactable in m_AvailableInteractables) {
-            DrawInteractionUI(interactable, m_Buttons[button_idx]);
-            if (button_idx == 0 && !EventSystem.current.currentSelectedGameObject) {  // TODO and selected object not visible
-                Debug.Log("selceted: " + m_Buttons[button_idx].gameObject);
-                EventSystem.current.SetSelectedGameObject(m_Buttons[button_idx].gameObject);
+            var interactable = interactable_idx < m_AvailableInteractables.Count ? m_AvailableInteractables[interactable_idx] : null;
+            if (interactable) {
+                if (!button.gameObject.activeSelf) {
+                    button.gameObject.SetActive(true);
+                }
+                DrawInteractionUI(interactable, button);
+                if (interactable_idx == 0 && !EventSystem.current.currentSelectedGameObject) {  // TODO and selected object not visible
+                    EventSystem.current.SetSelectedGameObject(button.gameObject);
+                }
+            } else {
+                button.gameObject.SetActive(false);
             }
-            if (++button_idx >= m_Buttons.Count) {
-                break;
-            }
+            ++interactable_idx;
         }
     }
 
@@ -60,13 +62,11 @@ public class ControllerInputHelper : MonoBehaviour {
         var cam = CameraBrain.Instance.OutputCamera;
         var pos_screen = cam.WorldToScreenPoint(interactable.transform.position);
 
+        button.transform.position = pos_screen;
         button.onClick.RemoveAllListeners();
         button.onClick.AddListener(() => {
             interactable.Invoke("Interaction", 0);  // irgh
         });
 
-        button.transform.position = pos_screen;
-        button.interactable = true;
-        button.enabled = true;
     }
 }

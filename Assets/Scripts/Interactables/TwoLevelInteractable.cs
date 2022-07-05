@@ -100,9 +100,11 @@ public class TwoLevelInteractable : Interactable<int> {
         base.Update();
         if (LocalPlayerIsInteracting()) { // local player at terminal
             float interacting_for = Time.fixedTime - LastUse;  // been interacting for ... seconds
+            /* TODO MIGRATE TO INPUTSYSTEM
             if (Input.GetKeyDown(KeyCode.Escape) || (Util.PlayerIsPressingMoveButton() && interacting_for > 1.0f)) {
                 TryExitLocalPlayer();
             }
+            */
         }
     }
 

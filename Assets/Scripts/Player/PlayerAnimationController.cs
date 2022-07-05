@@ -99,6 +99,7 @@ public class PlayerAnimationController : NetworkBehaviour {
 
     void Update() {
         if (IsOwner) {
+            /* TODO MIGRATE TO NEW INPUTSYSTEM
             if (Input.GetKeyDown(KeyCode.Alpha1)) {
                 TriggerAnimation(PlayerAnimation.ARMWAVE);
             }
@@ -112,6 +113,7 @@ public class PlayerAnimationController : NetworkBehaviour {
             if (Input.GetKeyDown(KeyCode.Alpha4)) {
                 TriggerAnimation(PlayerAnimation.SIT);
             }
+            */
         }
     }
 }

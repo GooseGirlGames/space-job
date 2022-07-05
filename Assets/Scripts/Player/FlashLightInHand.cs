@@ -18,10 +18,12 @@ public class FlashLightInHand : MonoBehaviour {
 
     Vector3? GetPointerTarget() {
         RaycastHit hit;
+        /* TODO MIGRATE TO NEW INPUTSYSTEM
         Ray ray = CameraBrain.Instance.OutputCamera.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hit, MAX_RAYCAST_DIST)) {
             return hit.point;
         }
+        */
 
         return null;
     }

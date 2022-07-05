@@ -35,11 +35,13 @@ public class GameManager : MonoBehaviour {
     }
 
     void Update() {
+        /* TODO MIGRATE TO INPUTSYSTEM
         if (Input.GetKeyDown(KeyCode.G)) {
             int n = QualitySettings.names.Length;
             int i = QualitySettings.GetQualityLevel();
             QualitySettings.SetQualityLevel((i + 1) % n, true);
         }
+        */
     }
 
     private void OnSceneLoad(ulong clientId, string scene, LoadSceneMode loadSceneMode, AsyncOperation op) {

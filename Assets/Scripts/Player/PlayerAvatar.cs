@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using Unity.Netcode;
 using TMPro;
 using UnityEngine.SceneManagement;
@@ -25,6 +26,16 @@ public class PlayerAvatar : NetworkBehaviour {
     private Coroutine m_DeathReviveCoroutine = null;
     public NetworkVariable<bool> Spawned =
             new NetworkVariable<bool>(false, default, NetworkVariableWritePermission.Owner);
+
+    /* === INPUT === */
+    [SerializeField]
+    private InputActionReference
+            m_MoveAction,
+            m_SwitchSlotAction,
+            m_DropItemAction,
+            m_InteractAction,
+            m_SelfInteractAction,
+            m_CheatCode_ReviveAction;
 
     /* === MOVEMENT & ROOMS === */
     public const float GRAVITY = -10f;  //in case of zero gravity this need to change
@@ -240,7 +251,7 @@ public class PlayerAvatar : NetworkBehaviour {
             m_FallVelocity = -2f;
         }
 
-        if (Input.GetKeyDown(KeyCode.R) && m_Health.Value <= 0) {
+        if (m_CheatCode_ReviveAction.action.WasPressedThisFrame() && m_Health.Value <= 0) {
             Revive(transform.position, transform.rotation);
         }
 
@@ -249,8 +260,9 @@ public class PlayerAvatar : NetworkBehaviour {
             return;
         }
 
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
+        Vector2 input = m_MoveAction.action.ReadValue<Vector2>();
+        float horizontalInput = input.x;
+        float verticalInput = input.y;
 
         var direction = new Vector3(horizontalInput, 0, verticalInput);
         if (direction.magnitude > 1) {
@@ -274,29 +286,17 @@ public class PlayerAvatar : NetworkBehaviour {
         p.Position = m_Controller.transform.position;
         p.Rotation = m_Controller.transform.rotation;
 
-        if (Input.GetKeyDown(KeyCode.Q)) {
+        if (m_DropItemAction.action.WasPerformedThisFrame()) {
             if (!HasInventorySpace(Slot.PRIMARY)) {
                 StartCoroutine(WaitForGround(0.5f));
             }
         }
 
-        if (Input.GetKey(KeyCode.Alpha9)){
-            if(CurrentRoom.RoomOxygen < 1f){
-                CurrentRoom.RoomOxygen = CurrentRoom.RoomOxygen + 0.1f;
-            }
-        }
-
-        if (Input.GetKey(KeyCode.Alpha0)){
-            if(CurrentRoom.RoomOxygen > 0f){
-                CurrentRoom.RoomOxygen = CurrentRoom.RoomOxygen - 0.1f;
-            }
-        }
-
-        if (Input.mouseScrollDelta.y != 0) {
+        if (m_SwitchSlotAction.action.WasPerformedThisFrame()) {
             SwapInventorySlots();
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse1)) {
+        if (m_SelfInteractAction.action.WasPerformedThisFrame()) {
             if (!HasInventorySpace(Slot.PRIMARY)) {
                 var item = GetInventoryItem(Slot.PRIMARY).GetComponentInChildren<InteractableBase>();
                 if (item != null && item.LastUse + item.CooldownTime() < Time.fixedTime) {

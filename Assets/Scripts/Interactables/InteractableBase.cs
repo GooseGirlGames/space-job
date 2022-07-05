@@ -1,6 +1,7 @@
 using Unity.Netcode;
 using UnityEngine;
 using System;
+using UnityEngine.InputSystem;
 
 public abstract class InteractableBase : NetworkBehaviour {
 
@@ -17,6 +18,10 @@ public abstract class InteractableBase : NetworkBehaviour {
     public float LastUse = 0;
     public bool CanInteract = true;
     public event Action OnDestroyCallback;
+
+    /* === INPUT === */
+    [SerializeField]
+    private InputActionReference m_InteractAction;
 
     // Called when item is held in hand and right mouse button pressed
     // Returns animation to play upon interaction
@@ -66,15 +71,16 @@ public abstract class InteractableBase : NetworkBehaviour {
 
 
     protected void OnMouseOver() {
+        Debug.Log("Mouseover");
         SetHighlight(PlayerCanInteract());
 
         if (PlayerCanInteract() && (!NeedsPower || ShipManager.Instance.HasPower)) {
             bool playAnim = false;
-            if (Input.GetButtonDown("Fire1") && LastUse + CooldownTime() < Time.fixedTime) {
+            if (m_InteractAction.action.WasPressedThisFrame() && LastUse + CooldownTime() < Time.fixedTime) {
                 Interaction();
                 playAnim = true;
                 LastUse = Time.fixedTime;
-            } else if (m_Mode == Mode.HOLD_DOWN && Input.GetButtonUp("Fire1")){
+            } else if (m_Mode == Mode.HOLD_DOWN && m_InteractAction.action.WasReleasedThisFrame()){
                 StopInteraction();
                 playAnim = true;
             }

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5531807044463136292}
   - component: {fileID: 758498729325233382}
   m_Layer: 0
-  m_Name: Button (7)
+  m_Name: InteractableButton 7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -269,7 +269,7 @@ GameObject:
   - component: {fileID: 5281057724660857609}
   - component: {fileID: 6416800325623863329}
   m_Layer: 0
-  m_Name: Button (1)
+  m_Name: InteractableButton 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -389,7 +389,7 @@ GameObject:
   - component: {fileID: 6394252419794187170}
   - component: {fileID: 184204928464142186}
   m_Layer: 0
-  m_Name: Button (6)
+  m_Name: InteractableButton 6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -507,6 +507,7 @@ GameObject:
   - component: {fileID: 2732998662871591169}
   - component: {fileID: 2732998662871591170}
   - component: {fileID: 1797901192965872753}
+  - component: {fileID: 3206250356287605448}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -559,6 +560,108 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_DebugText: {fileID: 471664555110872203}
   m_InteractionCanvas: {fileID: 2520409911169620423}
+--- !u!114 &3206250356287605448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2732998662871591171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 69774ed063d020083895131977dad7b5, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ba966651-77d4-4d63-be2b-d6f6718691c1
+    m_ActionName: Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0d85ea36-648b-460a-ab70-5b57a869be6a
+    m_ActionName: Player/Look[/Mouse/delta]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1bb234e2-3915-4239-be72-6653e35066c3
+    m_ActionName: Player/Fire[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 70b2cce6-686c-41f3-b447-cb65189a7262
+    m_ActionName: UI/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 590725b3-a7ec-4625-b4e5-44fb001c2205
+    m_ActionName: UI/Submit[/Keyboard/enter]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: fc78f6e1-2f96-4a2a-82ff-a89535b8897c
+    m_ActionName: UI/Cancel[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4381718a-ca93-4ab8-8b93-f99454ec0ba9
+    m_ActionName: UI/Point[/Mouse/position]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b058e117-cf8e-490e-8bc0-b1337fa31f7a
+    m_ActionName: UI/Click[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f92c9e0a-0d88-4c07-8c3c-b84154f92bff
+    m_ActionName: UI/ScrollWheel[/Mouse/scroll]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ccf4216f-51d4-4e79-900f-40780ad0114d
+    m_ActionName: UI/MiddleClick[/Mouse/middleButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: df638b52-8415-436f-8775-272fd8e7e371
+    m_ActionName: UI/RightClick[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2a894058-078f-4264-bfec-f412fc1ebdc6
+    m_ActionName: UI/TrackedDevicePosition
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 3bf0b5ee-23cd-46b3-9150-babd5fa1bf4f
+    m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5dc209bd-583f-4277-b328-55d55189705f
+    m_ActionName: Player/Drop[/Gamepad/buttonNorth,/Keyboard/q]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 81afe393-2fea-443b-8a52-d0a0dcb2b95b
+    m_ActionName: Player/Use on Self[/Gamepad/buttonWest,/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 7e636d7f-4ac9-47cf-a16d-3a7bb849bb66
+    m_ActionName: Player/Escape[/Gamepad/start,/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2fa986ff-3ba6-48ec-9b62-7cdf4627158a
+    m_ActionName: Player/CheatCode_Revive[/Keyboard/r]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: d4c005b5-efa4-45f5-acde-85dc120a1fa6
+    m_ActionName: Player/Swap Inventory Slots[/Mouse/scroll/x,/Gamepad/leftShoulder,/Gamepad/rightShoulder]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &2768076686575413893
 GameObject:
   m_ObjectHideFlags: 0
@@ -572,7 +675,7 @@ GameObject:
   - component: {fileID: 9189496197168535585}
   - component: {fileID: 2659535534042701895}
   m_Layer: 0
-  m_Name: Button (3)
+  m_Name: InteractableButton 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -692,7 +795,7 @@ GameObject:
   - component: {fileID: 2157495301493080534}
   - component: {fileID: 7016206605037023132}
   m_Layer: 0
-  m_Name: Button (2)
+  m_Name: InteractableButton 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -812,7 +915,7 @@ GameObject:
   - component: {fileID: 7381140088956658794}
   - component: {fileID: 1733165913208440870}
   m_Layer: 0
-  m_Name: Button (9)
+  m_Name: InteractableButton 9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1189,7 +1292,7 @@ GameObject:
   - component: {fileID: 3437189814341785153}
   - component: {fileID: 6411677450816723906}
   m_Layer: 0
-  m_Name: Button (10)
+  m_Name: InteractableButton 10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1309,7 +1412,7 @@ GameObject:
   - component: {fileID: 7684780664669030814}
   - component: {fileID: 8313950694105500437}
   m_Layer: 0
-  m_Name: Button (8)
+  m_Name: InteractableButton 8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1563,7 +1666,7 @@ GameObject:
   - component: {fileID: 2047256559295110461}
   - component: {fileID: 1940633464672610582}
   m_Layer: 0
-  m_Name: Button (4)
+  m_Name: InteractableButton 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1817,7 +1920,7 @@ GameObject:
   - component: {fileID: 7668068435685615960}
   - component: {fileID: 6574470192362754436}
   m_Layer: 0
-  m_Name: Button (5)
+  m_Name: InteractableButton 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
