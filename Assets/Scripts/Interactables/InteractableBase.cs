@@ -20,7 +20,6 @@ public abstract class InteractableBase : NetworkBehaviour {
     public event Action OnDestroyCallback;
 
     /* === INPUT === */
-    [SerializeField]
     private InputActionReference m_InteractAction;
 
     // Called when item is held in hand and right mouse button pressed
@@ -58,6 +57,7 @@ public abstract class InteractableBase : NetworkBehaviour {
         } else {
             Debug.LogWarning("No renderer found for " + gameObject.name);
         }
+        m_InteractAction = GameManager.Instance.InteractAction;
     }
 
     public override void OnDestroy() {

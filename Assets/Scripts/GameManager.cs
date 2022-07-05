@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Video;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using Unity.Netcode;
 using TMPro;
@@ -14,6 +15,7 @@ public class GameManager : MonoBehaviour {
     [SerializeField]
     private TMP_Text m_LoadingScreenText;
 
+    public InputActionReference InteractAction;
 
     void Awake() {
         if (Instance == null) {

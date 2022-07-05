@@ -20,7 +20,7 @@ public class ControllerInputHelper : MonoBehaviour {
 
     void Update() {
         string text = "SELECTED UI ELEMENT:\n";
-        text += EventSystem.current.currentSelectedGameObject.name + "\n\n";
+        text += EventSystem.current.currentSelectedGameObject + "\n\n";
         text += "AVAILABLE INTERACTABLES:\n";
         foreach (var i in m_AvailableInteractables) {
             text += i.name + "\n";
@@ -74,10 +74,13 @@ public class ControllerInputHelper : MonoBehaviour {
         var pos_screen = cam.WorldToScreenPoint(pos_world);
 
         button.transform.position = pos_screen;
+
         button.onClick.RemoveAllListeners();
         button.onClick.AddListener(() => {
             interactable.Invoke("Interaction", 0);  // irgh
         });
 
+        var interactbutton = button.GetComponent<ControllerInteractionButton>();
+        interactbutton.SetText(interactable.name);
     }
 }
