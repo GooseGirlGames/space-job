@@ -102,8 +102,6 @@ MonoBehaviour:
   audioSourceLeft: {fileID: 3470750269528536480, guid: e9f45d6a4e67da3f2a384d908b538fe6, type: 3}
   audioSourceRight: {fileID: 8164656220880866793, guid: 8c35c6af05f81b7f088e2e534eedd4a7, type: 3}
   audioSourceTerminal: {fileID: 4267446512716197173, guid: 4866e4adfaa59a3a09606fc6027d4851, type: 3}
-  thrusterSound: {fileID: 8300000, guid: 2224220c055727a7e89c6eeece803625, type: 3}
-  speedSound: {fileID: 8300000, guid: 0d36280856e53b964a041c1b8da1fabf, type: 3}
   audioSourceSpeed: {fileID: 5414670394912157762, guid: b80e9556809e5452782f427bf1ab22fb, type: 3}
   buttonSound: {fileID: 8300000, guid: e624fd355280edc1899131bd276cdf6c, type: 3}
 --- !u!114 &4398631959310996855
@@ -120,6 +118,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Map: {fileID: 1047239872381265899}
   HullBreachPrefab: {fileID: 5519585612222790138, guid: 6ac64921f83b462f69196c9298af06a6, type: 3}
+  FirePrefab: {fileID: 8299654265141273011, guid: 06ea1785ee1126a5f89ae9441f122196, type: 3}
 --- !u!82 &7125714971065593813
 AudioSource:
   m_ObjectHideFlags: 0

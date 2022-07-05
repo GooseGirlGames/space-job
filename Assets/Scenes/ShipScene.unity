@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.040637374, g: 0.24334216, b: 0.31317982, a: 1}
+  m_IndirectSpecularColor: {r: 0.040689424, g: 0.24335492, b: 0.31316802, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4326,11 +4326,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.1160302, y: 0.79227257, z: 0.9872669}
   m_Center: {x: -7.247283, y: -0.66107357, z: -0.6057474}
---- !u!1 &526462087 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8299654265141273011, guid: 06ea1785ee1126a5f89ae9441f122196, type: 3}
-  m_PrefabInstance: {fileID: 1372376962119125541}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &528127924
 GameObject:
   m_ObjectHideFlags: 0
@@ -11196,7 +11191,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1602352833}
-  m_LocalRotation: {x: 0.1649126, y: -0.018996757, z: 0.0031768994, w: 0.9861201}
+  m_LocalRotation: {x: 0.16491261, y: -0.018996727, z: 0.0031768947, w: 0.9861201}
   m_LocalPosition: {x: -1.07, y: 2.7, z: 2.08}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -12464,7 +12459,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1814098728}
-  m_LocalRotation: {x: 0.074217685, y: -0.39552027, z: 0.032085344, w: 0.91489124}
+  m_LocalRotation: {x: 0.07421769, y: -0.3955203, z: 0.032085348, w: 0.91489124}
   m_LocalPosition: {x: -1.095, y: 2.628, z: -28.73}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -14172,10 +14167,6 @@ PrefabInstance:
       propertyPath: audioSourceTerminal
       value: 
       objectReference: {fileID: 295767009}
-    - target: {fileID: 4398631959310996855, guid: 6a45d708ab572ca109168fe3970b24d5, type: 3}
-      propertyPath: FirePrefab
-      value: 
-      objectReference: {fileID: 526462087}
     - target: {fileID: 4912015480305189325, guid: 6a45d708ab572ca109168fe3970b24d5, type: 3}
       propertyPath: WinCanvas
       value: 
