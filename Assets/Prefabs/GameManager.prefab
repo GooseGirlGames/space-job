@@ -194,13 +194,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2732998662871591171}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 90227f3229b75167f85b3da9ef887e75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_DebugText: {fileID: 471664555110872203}
   m_InteractionCanvas: {fileID: 2520409911169620423}
+  MoveActionUI: {fileID: 2339646327222122780, guid: 69774ed063d020083895131977dad7b5, type: 3}
+  CancelActionUI: {fileID: 2834153688782720412, guid: 69774ed063d020083895131977dad7b5, type: 3}
 --- !u!114 &3206250356287605448
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -298,6 +300,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: d4c005b5-efa4-45f5-acde-85dc120a1fa6
     m_ActionName: Player/Swap Inventory Slots[/Mouse/scroll/x,/Gamepad/leftShoulder,/Gamepad/rightShoulder]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9380ac2f-fb38-43e8-8aa6-980de5e96482
+    m_ActionName: UI/Move[/Gamepad/leftStick,/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -440,7 +446,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6161176137112049315}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}

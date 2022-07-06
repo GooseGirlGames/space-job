@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using Unity.Netcode;
 using System.Collections.Generic;
 
@@ -48,8 +49,14 @@ public class Util {
         return elements[i];
     }
 
+    public static bool PlayerIsPressingMoveButton(InputActionReference action) {
+        var move = action.action.ReadValue<Vector2>();
+        return Mathf.Abs(move.x) > 0.05f || Mathf.Abs(move.y) > 0.05f;
+    }
+
     public static bool PlayerIsPressingMoveButton() {
-        return Mathf.Abs(Input.GetAxis("Horizontal")) > 0.05f || Mathf.Abs(Input.GetAxis("Vertical")) > 0.05f;
+        Debug.LogWarning("PlayerIsPressingMoveButton() uses old input system!  Use PlayerIsPressingMoveButton(InputActionReference) instead!");
+        return Mathf.Abs(Input.GetAxis("Horizontal")) > 0.5f || Mathf.Abs(Input.GetAxis("Vertical")) > 0.5f;
     }
 
     public static DroppableInteractable GetDroppableInteractable(NetworkObjectReference reference) {

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
@@ -13,6 +14,9 @@ public class ControllerInputHelper : MonoBehaviour {
     private List<InteractableBase> m_AvailableInteractables = new List<InteractableBase>();
     private List<Button> m_Buttons = new List<Button>();
 
+    public InputActionReference
+            MoveActionUI,
+            CancelActionUI;
 
     void Awake() {
         m_Buttons = new List<Button>(m_InteractionCanvas.GetComponentsInChildren<Button>());
