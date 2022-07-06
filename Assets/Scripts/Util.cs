@@ -50,12 +50,13 @@ public class Util {
     }
 
     public static bool PlayerIsPressingMoveButton(InputActionReference action) {
+        // meh
+        //
         var move = action.action.ReadValue<Vector2>();
         return Mathf.Abs(move.x) > 0.05f || Mathf.Abs(move.y) > 0.05f;
     }
 
     public static bool PlayerIsPressingMoveButton() {
-        Debug.LogWarning("PlayerIsPressingMoveButton() uses old input system!  Use PlayerIsPressingMoveButton(InputActionReference) instead!");
         return Mathf.Abs(Input.GetAxis("Horizontal")) > 0.5f || Mathf.Abs(Input.GetAxis("Vertical")) > 0.5f;
     }
 

@@ -41,7 +41,7 @@ public class ControllerInputHelper : MonoBehaviour {
                     button.gameObject.SetActive(true);
                 }
                 DrawInteractionUI(interactable, button);
-                if (interactable_idx == 0 && !EventSystem.current.currentSelectedGameObject) {  // TODO and selected object not visible
+                if (interactable_idx == 0 && (!EventSystem.current.currentSelectedGameObject || !EventSystem.current.currentSelectedGameObject.activeSelf)) {  // TODO and selected object not visible
                     EventSystem.current.SetSelectedGameObject(button.gameObject);
                 }
             } else {
