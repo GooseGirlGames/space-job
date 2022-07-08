@@ -255,6 +255,12 @@ public class PlayerAvatar : NetworkBehaviour {
             Revive(transform.position, transform.rotation);
         }
 
+        if (m_Health.Value > 0) {
+            if (m_SwitchSlotAction.action.WasPerformedThisFrame() || Input.mouseScrollDelta.y != 0) {
+                SwapInventorySlots();
+            }
+        }
+
         if (MovementLocked) {
             HorizontalSpeed.Value = 0.0f;
             return;
@@ -290,10 +296,6 @@ public class PlayerAvatar : NetworkBehaviour {
             if (!HasInventorySpace(Slot.PRIMARY)) {
                 StartCoroutine(WaitForGround(0.5f));
             }
-        }
-
-        if (m_SwitchSlotAction.action.WasPerformedThisFrame()) {
-            SwapInventorySlots();
         }
 
         if (m_SelfInteractAction.action.WasPerformedThisFrame()) {
