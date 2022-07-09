@@ -196,6 +196,10 @@ public abstract class DroppableInteractable : Interactable<int>{
         m_NetTransform.enabled = inWorld;
     }
 
+    protected override bool PlayerCanInteract() {
+        return base.PlayerCanInteract() && Value == IN_WORLD;
+    }
+
 
     /* ================== AUDIO ================== */
 
