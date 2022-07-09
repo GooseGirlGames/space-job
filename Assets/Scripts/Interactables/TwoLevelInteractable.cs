@@ -72,6 +72,7 @@ public class TwoLevelInteractable : Interactable<int> {
                 SetSecondaryButtonsActive(false);
                 TwoLevelInteractable.m_LocalPlayerInteracting = null;
                 InteractableExitCanvas.Instance.SetVisible(false);
+                GameManager.Instance.ControllerInput.MarkInteractableAvailable(this);
             }
         } else {
             if (current == (int)NetworkManager.Singleton.LocalClientId) { // local player entered terminal
@@ -81,6 +82,7 @@ public class TwoLevelInteractable : Interactable<int> {
                 SetSecondaryButtonsActive(true);
                 TwoLevelInteractable.m_LocalPlayerInteracting = this;
                 InteractableExitCanvas.Instance.SetVisible(true);
+                GameManager.Instance.ControllerInput.MarkInteractableUnavailable(this);
             }
         }
     }
