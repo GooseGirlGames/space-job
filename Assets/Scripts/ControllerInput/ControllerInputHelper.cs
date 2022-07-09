@@ -34,6 +34,10 @@ public class ControllerInputHelper : MonoBehaviour {
         foreach (var i in m_AvailableInteractables) {
             text += i.FriendlyName() + "\n";
         }
+        var map = GameManager.Instance.Input.currentActionMap;
+        text += "\n\nACTION MAP:  " + map;
+        var scheme = GameManager.Instance.Input.currentControlScheme;
+        text += "\n\nCONTROLE SCHEME:  " + scheme;
         m_DebugText.text = text;
     }
 
