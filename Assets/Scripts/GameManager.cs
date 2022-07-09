@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour {
     public static GameManager Instance = null;
 
     public ControllerInputHelper ControllerInput;
+    public PlayerInput Input;
     [SerializeField]
     private Canvas m_LoadingScreen;
     [SerializeField]
@@ -25,6 +26,7 @@ public class GameManager : MonoBehaviour {
         }
         DontDestroyOnLoad(this);
         ControllerInput = GetComponent<ControllerInputHelper>();
+        Input = GetComponent<PlayerInput>();
 #if !UNITY_SERVER
         GetComponentInChildren<VideoPlayer>().enabled = true;
 #endif
@@ -34,16 +36,6 @@ public class GameManager : MonoBehaviour {
         NetworkManager.Singleton.OnInitialized += () => {
             NetworkManager.Singleton.SceneManager.OnLoad += OnSceneLoad;
         };
-    }
-
-    void Update() {
-        /* TODO MIGRATE TO INPUTSYSTEM
-        if (Input.GetKeyDown(KeyCode.G)) {
-            int n = QualitySettings.names.Length;
-            int i = QualitySettings.GetQualityLevel();
-            QualitySettings.SetQualityLevel((i + 1) % n, true);
-        }
-        */
     }
 
     private void OnSceneLoad(ulong clientId, string scene, LoadSceneMode loadSceneMode, AsyncOperation op) {

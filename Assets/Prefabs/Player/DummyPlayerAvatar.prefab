@@ -1234,6 +1234,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73186a6da4ac418cb9bf4255e33f865a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_EmoteAction1: {fileID: 2977053171489796269, guid: 69774ed063d020083895131977dad7b5, type: 3}
+  m_EmoteAction2: {fileID: 5953578137177917550, guid: 69774ed063d020083895131977dad7b5, type: 3}
+  m_EmoteAction3: {fileID: 6002370957196004037, guid: 69774ed063d020083895131977dad7b5, type: 3}
+  m_EmoteAction4: {fileID: 2210837289675637503, guid: 69774ed063d020083895131977dad7b5, type: 3}
 --- !u!95 &8968880403888834928
 Animator:
   serializedVersion: 3

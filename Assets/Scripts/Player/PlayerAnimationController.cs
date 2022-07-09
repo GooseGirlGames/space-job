@@ -1,5 +1,6 @@
-using UnityEngine;
 using Unity.Netcode;
+using UnityEngine;
+using UnityEngine.InputSystem;
 
 public enum PlayerAnimation {
     NONE,
@@ -20,6 +21,13 @@ public enum PlayerAminationBool {
 public class PlayerAnimationController : NetworkBehaviour {
     private Animator m_PlayerAnimator;
     private PlayerAvatar m_Player;
+
+    [SerializeField]
+    private InputActionReference
+            m_EmoteAction1,
+            m_EmoteAction2,
+            m_EmoteAction3,
+            m_EmoteAction4;
 
     private void Start() {
         m_PlayerAnimator = GetComponent<Animator>();
@@ -99,21 +107,19 @@ public class PlayerAnimationController : NetworkBehaviour {
 
     void Update() {
         if (IsOwner) {
-            /* TODO MIGRATE TO NEW INPUTSYSTEM
-            if (Input.GetKeyDown(KeyCode.Alpha1)) {
+            if (m_EmoteAction1.action.WasPerformedThisFrame()) {
                 TriggerAnimation(PlayerAnimation.ARMWAVE);
             }
-            if (Input.GetKeyDown(KeyCode.Alpha2)) {
+            if (m_EmoteAction2.action.WasPerformedThisFrame()) {
                 TriggerAnimation(PlayerAnimation.JUMP);
             }
-            if (Input.GetKeyDown(KeyCode.Alpha3)) {
+            if (m_EmoteAction3.action.WasPerformedThisFrame()) {
                 TriggerAnimation(PlayerAnimation.DRINK);
                 
             }
-            if (Input.GetKeyDown(KeyCode.Alpha4)) {
+            if (m_EmoteAction4.action.WasPerformedThisFrame()) {
                 TriggerAnimation(PlayerAnimation.SIT);
             }
-            */
         }
     }
 }

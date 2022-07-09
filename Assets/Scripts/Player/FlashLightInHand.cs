@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Light))]
 public class FlashLightInHand : MonoBehaviour {
@@ -17,13 +18,17 @@ public class FlashLightInHand : MonoBehaviour {
     }
 
     Vector3? GetPointerTarget() {
-        RaycastHit hit;
-        /* TODO MIGRATE TO NEW INPUTSYSTEM
-        Ray ray = CameraBrain.Instance.OutputCamera.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out hit, MAX_RAYCAST_DIST)) {
-            return hit.point;
+        var dev = GameManager.Instance.Input.currentControlScheme;
+
+        if (dev == "Keyboard&Mouse") {
+            RaycastHit hit;
+            Ray ray = CameraBrain.Instance.OutputCamera.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out hit, MAX_RAYCAST_DIST)) {
+                return hit.point;
+            }
+        } else {
+            // TODO aim flashlight w/ controller
         }
-        */
 
         return null;
     }

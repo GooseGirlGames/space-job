@@ -267,6 +267,9 @@ public class PlayerAvatar : NetworkBehaviour {
         }
 
         Vector2 input = m_MoveAction.action.ReadValue<Vector2>();
+        if (input.magnitude < 0.1f) {  // deadzone
+            input = Vector2.zero;
+        }
         float horizontalInput = input.x;
         float verticalInput = input.y;
 
