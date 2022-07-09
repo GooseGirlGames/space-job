@@ -251,9 +251,11 @@ public class PlayerAvatar : NetworkBehaviour {
             m_FallVelocity = -2f;
         }
 
+#if !DISABLE_DEBUG_KEYS
         if (m_CheatCode_ReviveAction.action.WasPressedThisFrame() && m_Health.Value <= 0) {
             Revive(transform.position, transform.rotation);
         }
+#endif
 
         if (m_Health.Value > 0) {
             if (m_SwitchSlotAction.action.WasPerformedThisFrame() || Input.mouseScrollDelta.y != 0) {

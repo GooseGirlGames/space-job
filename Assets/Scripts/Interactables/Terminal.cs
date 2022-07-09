@@ -103,7 +103,6 @@ public class Terminal : Interactable<FixedString32Bytes> {
     public override void Update() {
         base.Update();
         if (m_IsInArea && m_LocalPlayerIsInteracting && !ShipManager.Instance.HasPower) {
-            /* TODO MIGRATE TO INPUTSYSTEM
             if (Input.GetKeyDown(KeyCode.Return)) {
                 SetEnteredTextServerRpc(m_TextEntered, true);
                 m_TextEntered = "";
@@ -121,7 +120,6 @@ public class Terminal : Interactable<FixedString32Bytes> {
                     SetEnteredTextServerRpc(m_TextEntered, false);
                 }
             }
-            */
         }
     }
 }

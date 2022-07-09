@@ -198,7 +198,7 @@ public class ShipSteering : NetworkBehaviour {
 
     private void Debug_MoveWithKeys(float delta_time) {
 
-        /* TODO MIGRATE TO INPUTSYSTEM
+#if !DISABLE_DEBUG_KEYS
         if (Input.GetKeyDown(KeyCode.I)) {
             ChangeTargetVelocityServerRpc(up: true);
         }
@@ -218,7 +218,7 @@ public class ShipSteering : NetworkBehaviour {
         if (Input.GetKeyUp(KeyCode.L)) {
             SetThrusterStateServerRpc(Thruster.ROTATE_RIGHT, false);
         }
-        */
+#endif
     }
 
     public void ResetSteering() {
