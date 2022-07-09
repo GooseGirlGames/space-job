@@ -67,4 +67,19 @@ public class ShipSteeringButton : InteractableBase {
                 break;
         }
     }
+
+    public override string FriendlyName() {
+        switch (m_Action) {
+            case (Action.TOGGLE_THRUSTER_TURN_LEFT):
+                return "Turn Left";
+            case (Action.TOGGLE_THRUSTER_TURN_RIGHT):
+                return "Turn Right";
+            case (Action.TARGET_SPEED_UP):
+                return "Increase Speed";
+            case (Action.TARGET_SPEED_DOWN):
+                return "Decrease Speed";
+            default:
+                return "Ship Steering";
+        }
+    }
 }

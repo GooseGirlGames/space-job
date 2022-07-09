@@ -23,6 +23,11 @@ public class CoffeCup : DroppableInteractable{
         int mat_idx = (m_CupMaterialPattern >> (m_CupNumber++ % 32)) & 1;
         GetComponent<MeshRenderer>().material = Materials[mat_idx];  
     }
+
+    public override string FriendlyName() {
+        return "Cup of Coffee";
+    }
+
     private AudioClip GetRandomGulpClip(){
         return gulpSounds[UnityEngine.Random.Range(0, gulpSounds.Length)];
     }

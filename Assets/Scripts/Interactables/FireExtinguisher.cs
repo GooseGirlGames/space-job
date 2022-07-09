@@ -8,4 +8,8 @@ public class FireExtinguisher : DroppableInteractable {
         interactionAudioSource.PlayOneShot(sound);
         return PlayerAnimation.INTERACT;
     }
+
+    public override string FriendlyName() {
+        return "Fire Extinguisher";
+    }
 }

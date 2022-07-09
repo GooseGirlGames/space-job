@@ -13,6 +13,10 @@ public class FloppyInsertPort : InteractableBase {
         }
     }
 
+    public override string FriendlyName() {
+        return "Floppy Drive";
+    }
+
     private void OnPlayerDataChanged(NetworkObjectReference prev, NetworkObjectReference curr) {
         bool prev_empty = Util.NetworkObjectReferenceIsEmpty(prev);
         bool curr_empty = Util.NetworkObjectReferenceIsEmpty(curr);

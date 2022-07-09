@@ -46,4 +46,8 @@ public class LightSwitch : Interactable<bool> {
         SetLightConditions(Value);
         audioSource = GetComponent<AudioSource>();
     }
+
+    public override string FriendlyName() {
+        return "Light Switch";
+    }
 }

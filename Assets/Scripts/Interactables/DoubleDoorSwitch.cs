@@ -12,4 +12,8 @@ public class DoubleDoorSwitch : RangedInteractableBase {
     protected override void Interaction() {
         m_Door.ToogleDoorStatusServerRpc();
     }
+
+    public override string FriendlyName() {
+        return "Door Switch";
+    }
 }

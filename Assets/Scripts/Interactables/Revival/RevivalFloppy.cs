@@ -4,6 +4,16 @@ using Unity.Netcode;
 public class RevivalFloppy : DroppableInteractable {
     public NetworkVariable<NetworkObjectReference> Player = new NetworkVariable<NetworkObjectReference>();
 
+    public override string FriendlyName() {
+        var name = "";
+
+        NetworkObject avatar_to_revive_neto;
+        if (Player.Value.TryGet(out avatar_to_revive_neto)) {
+            name = " (" + avatar_to_revive_neto.GetComponent<PlayerAvatar>().name + ")";
+        }
+
+        return "Backup Floppy" + name;
+    }
     // TODO move to medbay
     /*
     public override PlayerAnimation SelfInteraction(PlayerAvatar avatar_reviving) {

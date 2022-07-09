@@ -11,4 +11,10 @@ public class WallTerminalButton : InteractableBase
         ConnectedDoor.SetDoorStatusServerRpc(!ShouldClose);
         //DoorTerminal.DisplayDoorState(ShouldClose);
     }
+    public override string FriendlyName() {
+        if (ShouldClose) {
+            return "Close Door";
+        }
+        return "Open Door";
+    }
 }

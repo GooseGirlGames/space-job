@@ -13,6 +13,10 @@ public class RespawnButton : InteractableBase {
         return floppy_inserted && base.PlayerCanInteract();
     }
 
+    public override string FriendlyName() {
+        return "Respawn Button";
+    }
+
     protected override void Interaction() {
         ReviveServerRpc();
     }

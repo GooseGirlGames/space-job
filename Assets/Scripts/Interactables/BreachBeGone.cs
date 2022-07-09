@@ -8,4 +8,8 @@ public class BreachBeGone : DroppableInteractable {
         interactionAudioSource.PlayOneShot(sound);
         return PlayerAnimation.INTERACT;
     }
+
+    public override string FriendlyName() {
+        return "Breach-B-Gone";
+    }
 }

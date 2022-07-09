@@ -8,4 +8,7 @@ public class MetalPlate : DroppableInteractable {
         interactionAudioSource.PlayOneShot(sound);
         return PlayerAnimation.DRINK;
     }
+    public override string FriendlyName() {
+        return "Metal Plate";
+    }
 }

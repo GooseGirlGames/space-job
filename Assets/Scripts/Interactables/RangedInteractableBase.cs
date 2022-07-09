@@ -41,4 +41,5 @@ public abstract class RangedInteractableBase : InteractableBase {
             GameManager.Instance.ControllerInput.MarkInteractableUnavailable(this);
         }
     }
+
 }

@@ -22,4 +22,7 @@ public class NumPad : TwoLevelInteractable
         InputDisplay.text = ">";
         m_InCounter = 0;
     }
+    public override string FriendlyName() {
+        return "Numpad";
+    }
 }

@@ -25,4 +25,7 @@ public class Whiteboard : RangedInteractableBase {
             m_CameraSwap.SwitchAway();
         }
     }
+    public override string FriendlyName() {
+        return "Whiteboard";
+    }
 }

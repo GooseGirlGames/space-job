@@ -42,6 +42,11 @@ public abstract class InteractableBase : NetworkBehaviour {
         return DEFAULT_INTERACT_COOLDOWN_TIME;
     }
 
+    // Name of the interactable, as displayed in UI
+    public virtual string FriendlyName() {
+        return name;
+    }
+
     public virtual void Start() {
         m_HighlightedLayer = LayerMask.NameToLayer("Highlighted");
         m_Renderer = GetComponent<Renderer>();

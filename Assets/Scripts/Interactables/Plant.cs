@@ -30,6 +30,10 @@ public class Plant : Interactable<bool> {
     private NetworkVariable<bool> dry = new NetworkVariable<bool>(false);
     private NetworkVariable<bool> dead = new NetworkVariable<bool>(false);
 
+    public override string FriendlyName() {
+        return "Plant";
+    }
+
     void Awake() {
         seed = plantList[0];
         plant = plantList[1];

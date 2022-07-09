@@ -27,7 +27,7 @@ public class ControllerInputHelper : MonoBehaviour {
         text += EventSystem.current.currentSelectedGameObject + "\n\n";
         text += "AVAILABLE INTERACTABLES:\n";
         foreach (var i in m_AvailableInteractables) {
-            text += i.name + "\n";
+            text += i.FriendlyName() + "\n";
         }
         m_DebugText.text = text;
     }
@@ -85,6 +85,6 @@ public class ControllerInputHelper : MonoBehaviour {
         });
 
         var interactbutton = button.GetComponent<ControllerInteractionButton>();
-        interactbutton.SetText(interactable.name);
+        interactbutton.SetText(interactable.FriendlyName());
     }
 }

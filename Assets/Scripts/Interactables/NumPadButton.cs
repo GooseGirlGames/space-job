@@ -32,4 +32,7 @@ public class NumPadButton : InteractableBase
     {
         return 0.0f;
     }
+    public override string FriendlyName() {
+        return Number.ToString();
+    }
 }

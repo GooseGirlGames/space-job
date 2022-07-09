@@ -5,5 +5,8 @@ using UnityEngine;
 public class Seed : DroppableInteractable{
 
 
+    public override string FriendlyName() {
+        return "Seed";
+    }
 
 }

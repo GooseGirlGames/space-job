@@ -20,6 +20,14 @@ public class HullBreachInstance : RangedInteractableBase {
         m_DefaultAnim = TriggeredAnimation;
     }
 
+    public override string FriendlyName() {
+        string size = "";
+        if (m_Size == EventParameters.HullBreachSize.LARGE) {
+            size = "Large ";
+        }
+        return size + "Hull Breach";
+    }
+
     public float DrainFactor() {
         return BASE_DRAIN * (m_Size == EventParameters.HullBreachSize.LARGE ? 1.5f : 1f);
     }

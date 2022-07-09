@@ -9,6 +9,10 @@ public class FlashLight : DroppableInteractable {
     private NetworkVariable<bool> m_TurnedOn = new NetworkVariable<bool>(true);  // TODO unused for now
     private NetworkVariable<Quaternion> m_RotationInHand = new NetworkVariable<Quaternion>();
 
+    public override string FriendlyName() {
+        return "Flashlight";
+    }
+
     public override void Awake() {
         base.Awake();
         m_Beam = GetComponentInChildren<Light>();

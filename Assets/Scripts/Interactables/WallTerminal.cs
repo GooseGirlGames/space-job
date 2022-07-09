@@ -34,4 +34,7 @@ public class WallTerminal : TwoLevelInteractable
             StateDisplay.color = new Color32(33, 169, 33, 255);
         }
     }
+    public override string FriendlyName() {
+        return "Door Terminal";
+    }
 }

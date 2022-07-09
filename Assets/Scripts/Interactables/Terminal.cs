@@ -23,6 +23,10 @@ public class Terminal : Interactable<FixedString32Bytes> {
         m_InteractionRange.OnRangeTriggerExit += SwitchAwayIfPlayer;
     }
 
+    public override string FriendlyName() {
+        return "Power Terminal";
+    }
+
     public static readonly Dictionary<KeyCode, string> KEYCODES = new Dictionary<KeyCode, string>{
         {KeyCode.Alpha0, "0"},
         {KeyCode.Alpha1, "1"},

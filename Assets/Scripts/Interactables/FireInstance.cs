@@ -38,6 +38,10 @@ public class FireInstance : RangedInteractableBase
         }
     }
 
+    public override string FriendlyName() {
+        return "Fire";
+    }
+
     public void Setup(Room room, Transform spawn) {
         m_Room = room;
         name = "Fire (" + room.name + ")";

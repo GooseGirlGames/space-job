@@ -12,6 +12,10 @@ public class Chair : Interactable<bool>{
         audioSource = GetComponent<AudioSource>();    
     }
 
+    public override string FriendlyName() {
+        return "Chair";
+    }
+
     private AudioClip GetRandomSitClip(){
         return sitSounds[UnityEngine.Random.Range(0, sitSounds.Length)];
     }

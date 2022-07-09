@@ -8,4 +8,8 @@ public class Flamethrower : DroppableInteractable {
         interactionAudioSource.PlayOneShot(sound);
         return PlayerAnimation.INTERACT;
     }
+
+    public override string FriendlyName() {
+        return "Flamethrower";
+    }
 }

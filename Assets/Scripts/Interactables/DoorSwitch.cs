@@ -3,4 +3,8 @@ public class DoorSwitch : RangedInteractableBase {
     protected override void Interaction(){
         ConnectedDoor.ToogleDoorStatusServerRpc();
     }
+
+    public override string FriendlyName() {
+        return "Door Switch";
+    }
 }

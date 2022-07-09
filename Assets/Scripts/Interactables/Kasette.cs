@@ -10,4 +10,7 @@ public class Kasette : DroppableInteractable{
         return PlayerAnimation.INTERACT;
     }
 
+    public override string FriendlyName() {
+        return "Cassette";
+    }
 }

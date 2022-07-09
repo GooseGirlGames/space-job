@@ -11,4 +11,7 @@ public class PipeWrench : DroppableInteractable{
     return PlayerAnimation.INTERACT;
     }
 
+    public override string FriendlyName() {
+        return "Pipe Wrench";
+    }
 }

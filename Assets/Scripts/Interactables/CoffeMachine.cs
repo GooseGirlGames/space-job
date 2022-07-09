@@ -37,4 +37,7 @@ public class CoffeMachine : Interactable<bool> {
             Debug.Log("new cup");
         }
     }
+    public override string FriendlyName() {
+        return "Coffee Machine";
+    }
 }
