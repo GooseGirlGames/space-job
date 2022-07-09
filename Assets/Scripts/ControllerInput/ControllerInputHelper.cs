@@ -56,7 +56,8 @@ public class ControllerInputHelper : MonoBehaviour {
                     bool selected = EventSystem.current.currentSelectedGameObject.gameObject == button.gameObject;
                     interactable?.SetHighlight(selected && interactable.PlayerCanInteract());
                 } else {
-                    if (interactable.gameObject == InteractableSelectedWithMouse.gameObject) {
+                    if (InteractableSelectedWithMouse != null &&
+                            interactable.gameObject == InteractableSelectedWithMouse.gameObject) {
                         EventSystem.current.SetSelectedGameObject(button.gameObject);
                     }
                 }
