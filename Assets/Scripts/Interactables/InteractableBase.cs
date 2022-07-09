@@ -76,8 +76,11 @@ public abstract class InteractableBase : NetworkBehaviour {
 
 
     protected void OnMouseOver() {
-        Debug.Log("Mouseover");
         SetHighlight(PlayerCanInteract());
+
+        if (PlayerCanInteract()) {
+            GameManager.Instance.ControllerInput.InteractableSelectedWithMouse = this;
+        }
 
         if (PlayerCanInteract() && (!NeedsPower || ShipManager.Instance.HasPower)) {
             bool playAnim = false;
@@ -98,6 +101,9 @@ public abstract class InteractableBase : NetworkBehaviour {
     protected void OnMouseExit() {
         SetHighlight(false);
         StopInteraction();
+        if (GameManager.Instance.ControllerInput.InteractableSelectedWithMouse == this) {
+            GameManager.Instance.ControllerInput.InteractableSelectedWithMouse = null;
+        }
     }
 
     public virtual void Update() {

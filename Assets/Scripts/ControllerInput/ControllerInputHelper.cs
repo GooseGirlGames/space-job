@@ -14,6 +14,8 @@ public class ControllerInputHelper : MonoBehaviour {
     private List<InteractableBase> m_AvailableInteractables = new List<InteractableBase>();
     private List<Button> m_Buttons = new List<Button>();
 
+    public InteractableBase InteractableSelectedWithMouse;
+
     public InputActionReference
             MoveActionUI,
             CancelActionUI;
@@ -44,7 +46,7 @@ public class ControllerInputHelper : MonoBehaviour {
                     button.gameObject.SetActive(true);
                 }
                 DrawInteractionUI(interactable, button);
-                if (interactable_idx == 0 &&
+                if (Util.UsingGamepad() && interactable_idx == 0 &&
                         (!EventSystem.current.currentSelectedGameObject
                          || !EventSystem.current.currentSelectedGameObject.activeSelf)) {  // TODO??? and selected object not visible
                     EventSystem.current.SetSelectedGameObject(button.gameObject);
@@ -53,6 +55,10 @@ public class ControllerInputHelper : MonoBehaviour {
                 if (Util.UsingGamepad()) {
                     bool selected = EventSystem.current.currentSelectedGameObject.gameObject == button.gameObject;
                     interactable?.SetHighlight(selected && interactable.PlayerCanInteract());
+                } else {
+                    if (interactable.gameObject == InteractableSelectedWithMouse.gameObject) {
+                        EventSystem.current.SetSelectedGameObject(button.gameObject);
+                    }
                 }
             } else {
                 if (Util.UsingGamepad()) {
@@ -60,6 +66,11 @@ public class ControllerInputHelper : MonoBehaviour {
                 }
                 button.gameObject.SetActive(false);
             }
+
+            if (!Util.UsingGamepad() && InteractableSelectedWithMouse == null) {
+                EventSystem.current.SetSelectedGameObject(null);
+            }
+
             ++interactable_idx;
         }
     }
