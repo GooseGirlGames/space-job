@@ -12,7 +12,7 @@ public class ZoomInteractable : InteractableBase
         m_CameraSwap = GetComponent<CameraSwap>();
     }
 
-    protected override bool PlayerCanInteract(){
+    public override bool PlayerCanInteract(){
         return true;  // TODO does this make sense?!
     }
 

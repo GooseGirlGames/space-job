@@ -8,7 +8,7 @@ public class RespawnButton : InteractableBase {
     [SerializeField]
     private FloppyInsertPort m_Port;
 
-    protected override bool PlayerCanInteract() {
+    public override bool PlayerCanInteract() {
         bool floppy_inserted = !Util.NetworkObjectReferenceIsEmpty(m_Port.PlayerData.Value);
         return floppy_inserted && base.PlayerCanInteract();
     }

@@ -40,7 +40,7 @@ public class TwoLevelInteractable : Interactable<int> {
         m_State.Value = NOT_OCCUPIED;
     }
 
-    protected override bool PlayerCanInteract() {
+    public override bool PlayerCanInteract() {
         return base.PlayerCanInteract() && !LocalPlayerIsInteracting();
     }
 

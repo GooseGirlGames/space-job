@@ -86,6 +86,11 @@ public class Util {
         return null;
     }
 
+    public static bool UsingGamepad() {
+        var scheme = GameManager.Instance.Input.currentControlScheme;
+        return scheme == "Gamepad";
+    }
+
     public static void BakeLighting() {
 #if UNITY_EDITOR
         foreach (var scene in new string[]{"ShipScene"}) {

@@ -29,7 +29,7 @@ public abstract class InteractableBase : NetworkBehaviour {
     }
 
     protected abstract void Interaction();
-    protected virtual bool PlayerCanInteract() {
+    public virtual bool PlayerCanInteract() {
         return CanInteract && PlayerManager.Instance.LocalPlayer.Avatar.m_Health.Value > 0;
     }
 
@@ -70,7 +70,7 @@ public abstract class InteractableBase : NetworkBehaviour {
         base.OnDestroy();
     }
 
-    protected void SetHighlight(bool highlighted) {
+    public void SetHighlight(bool highlighted) {
         m_Renderer.gameObject.layer = highlighted ? m_HighlightedLayer : m_DefaultLayer;
     }
 

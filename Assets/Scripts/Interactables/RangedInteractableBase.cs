@@ -19,7 +19,7 @@ public abstract class RangedInteractableBase : InteractableBase {
         }
     }
 
-    protected override bool PlayerCanInteract() {
+    public override bool PlayerCanInteract() {
         return m_IsInArea && base.PlayerCanInteract();
     }
 
