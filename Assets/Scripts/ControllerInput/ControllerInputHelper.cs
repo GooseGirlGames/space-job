@@ -23,6 +23,9 @@ public class ControllerInputHelper : MonoBehaviour {
     }
 
     void Update() {
+        if (!m_DebugText.IsActive()) {
+            return;
+        }
         string text = "SELECTED UI ELEMENT:\n";
         text += EventSystem.current.currentSelectedGameObject + "\n\n";
         text += "AVAILABLE INTERACTABLES:\n";
