@@ -27,7 +27,9 @@ public class ShipManager : NetworkBehaviour {
     private float m_DistanceToWin;
 
     public PowerTerminal PowerTerminal;
-    public Canvas WinCanvas;
+
+    [SerializeField]
+    private WinScreen m_WinScreen;
 
     [SerializeField]
     private Material m_TransitionMaterial;
@@ -80,8 +82,8 @@ public class ShipManager : NetworkBehaviour {
 
     }
     protected void OnWinChange(bool prev, bool current) {
-        if (WinCanvas != null) {
-            WinCanvas.enabled = current;
+        if (m_WinScreen != null) {
+            m_WinScreen.SetEnabled(current);
         }
     }
     public override void OnNetworkSpawn(){

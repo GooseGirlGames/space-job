@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7153911370264989012}
   - component: {fileID: 1979789404646814138}
   m_Layer: 0
-  m_Name: Canvas
+  m_Name: Loading Screen Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -184,6 +184,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ControllerInput: {fileID: 0}
+  Input: {fileID: 0}
   m_LoadingScreen: {fileID: 1736391049655627735}
   m_LoadingScreenText: {fileID: 8880468497688378754}
   InteractAction: {fileID: -5044812885204763015, guid: 69774ed063d020083895131977dad7b5, type: 3}
@@ -304,6 +305,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 9380ac2f-fb38-43e8-8aa6-980de5e96482
     m_ActionName: UI/Move[/Gamepad/leftStick,/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: dceec491-f7a2-42c9-bc4c-1de7e88e3711
+    m_ActionName: Player/Emote 1[/Keyboard/1,/Gamepad/dpad/up]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: cee8c963-0198-49b9-83d5-0454bffce1ba
+    m_ActionName: Player/Emote 2[/Keyboard/2,/Gamepad/dpad/right]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2818abd8-068c-44bd-8a50-e218910fe3fa
+    m_ActionName: Player/Emote 3[/Keyboard/3,/Gamepad/dpad/down]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1dcd4463-64fd-4091-ab1d-6e2e33b4886a
+    m_ActionName: Player/Emote 4[/Keyboard/4,/Gamepad/dpad/left]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
