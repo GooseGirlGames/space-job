@@ -35,6 +35,7 @@ public class HullBreachInstance : RangedInteractableBase {
     public override void OnDestroy() {
         var ava = PlayerManager.Instance.LocalPlayer.Avatar;
         if (ava) {
+            ava.AnimationController.SetBool(PlayerAminationBool.HOLDING_PLATE, false);
             ava.ReleaseMovementLock(GetHashCode());
         }
         base.OnDestroy();
@@ -73,8 +74,9 @@ public class HullBreachInstance : RangedInteractableBase {
         ava.AnimationController.SetBool(PlayerAminationBool.HOLDING_PLATE, true);
         ava.LockMovement(GetHashCode());
         SetIsHoldingServerRpc(true);
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(0.5f);
         ava.AnimationController.SetBool(PlayerAminationBool.HOLDING_PLATE, false);
+        yield return new WaitForSeconds(1.5f);
         ava.ReleaseMovementLock(GetHashCode());
         SetIsHoldingServerRpc(false);
     }
