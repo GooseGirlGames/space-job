@@ -72,7 +72,7 @@ public class ControllerInputHelper : MonoBehaviour {
             return;
         }
 
-        if (PlayerManager.Instance?.LocalPlayer?.Avatar?.m_Health.Value <= 0f) {
+        if (PlayerManager.Instance?.LocalPlayer?.Avatar?.m_Health?.Value <= 0f) {
             foreach (var button in m_Buttons) {
                 button.gameObject.SetActive(false);
             }

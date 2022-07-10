@@ -44,18 +44,27 @@ public class TwoLevelInteractable : Interactable<int> {
         return base.PlayerCanInteract() && !LocalPlayerIsInteracting();
     }
 
+    public override float CooldownTime() {
+        if (Value == NOT_OCCUPIED) {
+            return 0.05f;
+        }
+        return base.CooldownTime();
+    }
+
     [ServerRpc(RequireOwnership = false)]
-    public void TryToggleOccupiedServerRpc(int playerId) {
-        if (Value == NOT_OCCUPIED) {  // no one at terminal
+    public void TrySetOccupiedServerRpc(int playerId, bool try_occupy) {
+        if (Value == NOT_OCCUPIED && try_occupy) {  // no one at terminal
             m_State.Value = playerId;
-        } else if (Value == playerId) {  // player left terminal
+        } else if (Value == playerId && !try_occupy) {  // player left terminal
             m_State.Value = NOT_OCCUPIED;
         }
         // Otherwise, someone else is at the terminal.  it will remain occupied
     }
 
     protected override void Interaction() {
-        TryToggleOccupiedServerRpc((int)NetworkManager.Singleton.LocalClientId);
+        int local_player = (int)NetworkManager.Singleton.LocalClientId;
+        bool is_occupied_by_local_player = Value == local_player;
+        TrySetOccupiedServerRpc(local_player, !is_occupied_by_local_player);
     }
 
     public override void OnStateChange(int prev, int current) {
@@ -112,7 +121,7 @@ public class TwoLevelInteractable : Interactable<int> {
 
     public void TryExitLocalPlayer() {
         if (LocalPlayerIsInteracting()) {
-            TryToggleOccupiedServerRpc((int)NetworkManager.Singleton.LocalClientId);
+            TrySetOccupiedServerRpc((int)NetworkManager.Singleton.LocalClientId, try_occupy: false);
         }
     }
 
